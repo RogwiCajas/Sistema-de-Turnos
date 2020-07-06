@@ -1,0 +1,5 @@
+Abraham,Aguilar,30,M,Problemas Respiratorios
+Keyco, Chang, 43,F,Costestion Nasal
+Susan, Montenegro, 23,F,Vomito
+Mathias,Ruiz,10, Fiebre
+Xavier,Solis,23,Taquicardia

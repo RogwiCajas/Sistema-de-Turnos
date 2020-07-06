@@ -5,9 +5,7 @@
  */
 package controlador;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import modelo.Medico;
@@ -28,7 +26,7 @@ public class Controlador {
     
     //metodos para cargar los arreglos
     public static LinkedList<Medico> cargarMedicos(){
-        File file=new File("medicos.txt");
+        File file=new File("src/recursos/medicos.txt");
         String linea;
         LinkedList<Medico> procesos=new LinkedList<>();
         try {
@@ -56,8 +54,20 @@ public class Controlador {
         return procesos;
     }
     
+   public static boolean agregarMedicos(String nombre, String apellido, String genero, int edad, String especialidad){
+        try {
+            FileWriter fstream = new FileWriter("src/recursos/medicos.txt", true);
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write("\n"+nombre+","+apellido+","+genero+","+edad+","+especialidad);
+            out.close();
+        } catch (IOException ex) {
+            System.out.println("Error: "+ex.getMessage());
+        }
+        return true;
+ }
+   
     public static PriorityQueue<Paciente> cargarPacientes(){//Cargar una lista de pacientes y meterlos en una cola
-        File file=new File("pacientes.txt");
+        File file=new File("src/recursos/pacientes.txt");
         String linea;
         LinkedList<Paciente> pacientes=new LinkedList<>();
         try {
@@ -86,6 +96,18 @@ public class Controlador {
         return colaPacientes;
     }
     
+    public static boolean agregarPaciente(String nombre, String apellido, String genero, int edad, String sintoma){
+        try {
+            FileWriter fstream = new FileWriter("src/recursos/pacientes.txt", true);
+            BufferedWriter out = new BufferedWriter(fstream);
+            out.write("\n"+nombre+","+apellido+","+genero+","+edad+","+sintoma);
+            out.close();
+        } catch (IOException ex) {
+            System.out.println("Error: "+ex.getMessage());
+        }
+        return true;
+ }
+    /*
     public static LinkedList<Puesto> cargarPuestos(){
         File file=new File("puestos.txt");
         String linea;
@@ -113,5 +135,5 @@ public class Controlador {
         return puestos;
     }
     
-    
+    */
 }

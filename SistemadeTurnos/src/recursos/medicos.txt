@@ -1,0 +1,4 @@
+Isaac, Solis,30,M, General
+Rogwi, Caja,32,M, General
+Eduardo, Cruz,38,M Pediatria
+Carla, Cevallos,29,F Cardiologia

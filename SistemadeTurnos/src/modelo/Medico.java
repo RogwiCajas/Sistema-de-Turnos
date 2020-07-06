@@ -11,17 +11,23 @@ package modelo;
  */
 public class Medico extends Persona{
     private String especialidad;
-    private int id;
+    private static int id=0;
 
     public Medico(String nombres, String apellidos, int edad, String genero,String especialidad,int id) {
         super(nombres, apellidos, edad, genero);
         this.especialidad = especialidad;
-        this.id=id;
+        incremnentarId();
     }
-    public Medico(int id){
+    public Medico(){
         super(null, null, 0, null);
         this.especialidad = null;
-        this.id=id;
+        incremnentarId();
+    }
+    private static int incremnentarId(){
+        return id++;
+    }
+    public static int getId(){
+        return id;
     }
 
     public Medico(String nombres, String apellidos, int edad, String genero) {
