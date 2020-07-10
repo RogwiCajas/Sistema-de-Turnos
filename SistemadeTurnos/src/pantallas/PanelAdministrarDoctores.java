@@ -5,12 +5,17 @@
  */
 package pantallas;
 
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
 /**
  *
  * @author cajas
  */
-public class VentanaTurnos extends Pane{
+public class PanelAdministrarDoctores extends Pane{
+    private Button crearDoctor;
+    private Button borrarDoctor;
+    private Button atras;
+    //tabla para mostrar doctores.
     
 }

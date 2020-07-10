@@ -9,7 +9,7 @@ package modelo;
  *
  * @author cajas
  */
-public class Medico extends Persona{
+public class Medico extends Persona {
     private String especialidad;
     private static int id=0;
 
