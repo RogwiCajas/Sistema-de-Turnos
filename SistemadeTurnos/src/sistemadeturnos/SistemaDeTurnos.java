@@ -44,7 +44,7 @@ public class SistemaDeTurnos extends Application{
     @Override
     public void start(Stage stage)  {
         
-        //Parent root = FXMLLoader.load(getClass().getResource("VistaPrincipal.fxml"));
+        
         stage.setTitle("Reproductor de video Java FX - Lista Circular");
         stage.setScene(new PanelPrincipal().getNewScene());
         stage.show();
