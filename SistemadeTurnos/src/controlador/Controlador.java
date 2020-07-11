@@ -8,10 +8,15 @@ package controlador;
 import java.io.*;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.Puesto;
-import tda.CircularSimplyLinkedList;
+import tda.CircularDoublyLinkedList;
+import tda.Node;
+
 
 /**
  *
@@ -22,7 +27,19 @@ public class Controlador {
     private static LinkedList<Medico> doctores;
     private static PriorityQueue <Paciente> pacientes;
     private static LinkedList<Puesto> puestos;
-    private static CircularSimplyLinkedList<String> videos;
+    private static CircularDoublyLinkedList<String> videos;
+
+    public static CircularDoublyLinkedList<String> getVideos() {
+        return videos;
+    }
+    
+
+    
+    
+    
+    
+   
+    
     
     //metodos para cargar los arreglos
     public static LinkedList<Medico> cargarMedicos(){
@@ -136,4 +153,27 @@ public class Controlador {
     }
     
     */
+    
+    /**
+     * Funcion que se encarga de llenar la lista circula doble 
+     * @param rutaProyecto 
+     */
+    
+    public static void llenarListaCircular(String rutaProyecto) {
+        videos = new CircularDoublyLinkedList<>();
+        String[] nombreVideos = {"zoom_1", "zoom_2", "zoom_3"};
+        for (String nombreVideo : nombreVideos) {
+            videos.addLast(rutaProyecto + "\\videos\\" + nombreVideo + ".mp4");
+            
+        }
+       
+       
+        }
+
+   
+    
+        
+        
+        
+    
 }

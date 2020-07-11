@@ -3,3 +3,20 @@ Keyco, Chang, 43,F,Costestion Nasal
 Susan, Montenegro, 23,F,Vomito
 Mathias,Ruiz,10, Fiebre
 Xavier,Solis,23,Taquicardia
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
