@@ -56,8 +56,7 @@ public class Controlador {
                           dato[1],
                           Integer.parseInt(dato[2]),
                           dato[3],
-                          dato[4],
-                          Integer.parseInt(dato[5])
+                          dato[4]//el id es incremental, no es necesario agregarlo
                   );
                   
                   procesos.add(m);

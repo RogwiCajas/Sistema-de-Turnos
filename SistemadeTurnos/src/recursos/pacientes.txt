@@ -20,3 +20,5 @@ Cristina,Guerrero,Masculino,23,Covid 19
 Cristina,Guerrero,Masculino,23,Covid 19
 Cristina,Guerrero,Masculino,23,Covid 19
 Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19
+Cristina,Guerrero,Masculino,23,Covid 19

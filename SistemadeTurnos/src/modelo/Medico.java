@@ -13,7 +13,7 @@ public class Medico extends Persona {
     private String especialidad;
     private static int id=0;
 
-    public Medico(String nombres, String apellidos, int edad, String genero,String especialidad,int id) {
+    public Medico(String nombres, String apellidos, int edad, String genero,String especialidad) {
         super(nombres, apellidos, edad, genero);
         this.especialidad = especialidad;
         incremnentarId();

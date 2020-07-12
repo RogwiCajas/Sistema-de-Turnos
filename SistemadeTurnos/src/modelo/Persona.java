@@ -5,6 +5,9 @@
  */
 package modelo;
 
+
+import java.util.Objects;
+
 /**
  *
  * @author cajas
@@ -52,6 +55,39 @@ public class Persona {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Persona other = (Persona) obj;
+        if (this.edad != other.edad) {
+            return false;
+        }
+        if (!Objects.equals(this.nombres, other.nombres)) {
+            return false;
+        }
+        if (!Objects.equals(this.apellidos, other.apellidos)) {
+            return false;
+        }
+        if (!Objects.equals(this.genero, other.genero)) {
+            return false;
+        }
+        return true;
     }
     
     
