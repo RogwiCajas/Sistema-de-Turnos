@@ -25,6 +25,11 @@ public class Medico extends Persona {
         this.idM=idM;
         id++;
     }
+    public Medico(){
+        super("-","-",0,"-");
+        this.especialidad="-";
+        
+    }
     
     public static int getId(){
         return id;
@@ -54,6 +59,9 @@ public class Medico extends Persona {
 
     @Override
     public String toString() {
+        if(this.idM==0){
+            return "Medico no Asignado";
+        }
         return "Medico{" +"nombre="+this.getNombres()+" "+this.getApellidos()+ ", especialidad=" + especialidad + ", ID Medico=" + idM + '}';
     }
     

@@ -7,6 +7,7 @@ package pantallas;
 
 
 import controlador.Controlador;
+import java.util.Iterator;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -144,30 +145,52 @@ public class PanelAdministrarDoctores extends Pane{
         
     }
     private void agregarMedico(){//Validar entradas segun tipo
-        String nombre=this.nombretxt.getText();
-        String apellidos=this.apellidotxt.getText();
-        int edad=Integer.parseInt(this.edadtxt.getText());
-        String genero=this.generotxt.getText();
-        String especialidad=this.especialidadtxt.getText();
-        //el ide se autogenera;
-        Medico m;
+
         try {
+            
+            String nombre=this.nombretxt.getText();
+            String apellidos=this.apellidotxt.getText();
+            int edad=Integer.parseInt(this.edadtxt.getText());
+            String genero=this.generotxt.getText();
+            String especialidad=this.especialidadtxt.getText();
+            
+            Medico m;
             m=new Medico(nombre, apellidos, edad, genero,especialidad);
+            
             if(!this.doctores.contains(m)){//para evitar repetir
                 this.doctores.add(m);
                 this.tbldoctores.setItems(doctores);
-                System.out.println("Doctor guardado");
-                
+                //agregar alerta exitosa
             } else{
-                System.err.println("Usuario Repetido");
+                Controlador.crearAlerta("ERROR", "El medico ya existe!");
             }
             
-        } catch (Exception e) {
-            System.err.println("Complete todos los campos");
+        } catch (NumberFormatException e) {
+            Controlador.crearAlerta("EROR","Formato Incorrecto!");
         }
-        //Medico m=new Medico(nombre, apellidos, edad, genero,especialidad);
         
     }
+    private void eliminarMedico(){
+        try {
+            //Obtengo el selected
+            Medico m=this.tbldoctores.getSelectionModel().getSelectedItem();
+            //Buscaa y elimina asignaciones
+            Controlador.eliminarAsignacion(m);
+            //elimina el doctor de la base
+            this.doctores.remove(m);
+            //actualiza la vista
+            this.tbldoctores.setItems(doctores);
+            //System.out.println(Controlador.getDoctores());
+            //agregar alerta exitosa
+            
+        } catch (Exception e) {
+            Controlador.crearAlerta("ERROR", e.getMessage());
+            
+        }
+        
+        
+    }
+    
     private void formato(){
         //formato y alineacion del panel principal
         panel.setPadding(new Insets(150,70,70,100));
@@ -206,8 +229,8 @@ public class PanelAdministrarDoctores extends Pane{
         eliminarDoctor.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("Doctor Eliminado, no implementado");
+                            
+                            eliminarMedico();
 			}
 	});
         atras.setOnAction( new EventHandler<ActionEvent>() {

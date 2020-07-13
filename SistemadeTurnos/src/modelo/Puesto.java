@@ -85,6 +85,11 @@ public class Puesto {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Puesto{" + "id=" + id + ", doctor=" + doctor + ", estado=" + estado + '}';
+    }
     
     
     

@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
+import javafx.scene.control.Alert;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -109,6 +110,20 @@ public class Controlador {
             return false;
         }
     }
+    public static void eliminarAsignacion(Medico m){
+        Iterator<Puesto> it=puestos.iterator();
+        
+        while(it.hasNext()){
+            Puesto p=it.next();
+            if(p.getDoctor().equals(m)){//Cuando encuentre al puesto con el medico
+                p.setDoctor(new Medico());//agrego un objeto medico vacio
+                p.setEstado(Boolean.FALSE);
+                
+            }
+            
+        
+        }
+    }
     private static Medico buscarMedicoID(int id){
         Iterator<Medico> it=doctores.iterator();
         
@@ -116,15 +131,18 @@ public class Controlador {
             Medico m=it.next();
             if(m.getIdM()==id){//si es el id que buscamos
                 return m;
-            }
-            
+            }            
         }
-        return null;
-        
-        
+        return null;     
     }
-    
-    
+    public static void crearAlerta(String titulo,String mensaje){
+        Alert alert=new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    ///////   
     public static LinkedList<Medico> cargarMedicos(){
         File file=new File("src/recursos/medicos.txt");
         String linea;
