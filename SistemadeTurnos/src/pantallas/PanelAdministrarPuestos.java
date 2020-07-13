@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Medico;
+import modelo.Paciente;
 import modelo.Puesto;
 
 /**
@@ -99,24 +100,47 @@ public class PanelAdministrarPuestos extends Pane{
         Puesto p;
         try {
             
-            p=new Puesto(cb.getValue(),true);
+            p=new Puesto(cb.getValue(),false,new Paciente());//sin asignar paciente
             
             if(!this.puestos.contains(p)){//para evitar repetir
                 if(p.getDoctor()==null){
-                    p.setEstado(Boolean.FALSE);
+                    //p.setEstado(Boolean.FALSE);
+                    p.setDoctor(new Medico());//ASIGNO UN MEDICO VACIO si no escogio ningun medico
                 }
                 this.puestos.add(p);
                 this.tblpuestos.setItems(puestos);
-                System.out.println("Puesto Guardado");
+                Controlador.crearNotificacion("Confirmacion", "Puesto Creado Correctamente!");
                 
             } else{
-                System.err.println("Puesto Repetido");
+                Controlador.crearAlerta("ERROR", "El puesto ya existe!");
             }
             
         } catch (Exception e) {
-            System.err.println("Complete todos los campos");
+            Controlador.crearAlerta("ERROR", "Error al agregar, consulte al desarrollador!");
         }
         //Medico m=new Medico(nombre, apellidos, edad, genero,especialidad);
+        
+    }
+    private void eliminarPuesto(){
+            try {
+            //Obtengo el selected
+            Puesto p=this.tblpuestos.getSelectionModel().getSelectedItem();
+            //si tiene un Paciente no pude ser removido
+            if(p.getEstado()==false){//si no hay un paciente asigando al puesto
+                //elimina el puesto
+                this.puestos.remove(p);
+                //actualiza la vista
+                this.tblpuestos.setItems(puestos);
+                //agregar alerta exitosa
+                Controlador.crearNotificacion("Confirmacion", "Medico Eliminado Correctamente");
+                
+            }else{//si no esta vacio, pide que porfavor elimines
+                Controlador.crearAlerta("Uy kieto", "Puesto Ocupado: \nAntes de eliminar el puesto el Paciente debe ser atendido!");
+            }  
+            
+        } catch (Exception e) {
+            Controlador.crearAlerta("ERROR", e.getMessage());
+        }
         
     }
     private void cargarTabla(){
@@ -125,8 +149,8 @@ public class PanelAdministrarPuestos extends Pane{
               
         this.tblpuestos=new TableView<>();
         this.colIDP=new TableColumn("ID Puesto");
-        this.colIDM=new TableColumn("ID Medico");
-        this.colEstado=new TableColumn("Estado");
+        this.colIDM=new TableColumn("Medico");
+        this.colEstado=new TableColumn("Ocupado");
                
         tblpuestos.getColumns().addAll(colIDP,colIDM,colEstado);
         tblpuestos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -177,8 +201,7 @@ public class PanelAdministrarPuestos extends Pane{
         eliminarPuesto.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("elimina puesto");
+                            eliminarPuesto();
 			}
 	});
         atras.setOnAction( new EventHandler<ActionEvent>() {

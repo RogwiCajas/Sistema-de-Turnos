@@ -27,6 +27,7 @@ import tda.Node;
 public class Controlador {
     
     private static LinkedList<Medico> doctores;
+    private static LinkedList<Paciente> pacienteslista;
     private static PriorityQueue <Paciente> pacientes;
     private static LinkedList<Puesto> puestos;
     private static CircularDoublyLinkedList<String> videos;
@@ -90,7 +91,8 @@ public class Controlador {
                   Puesto p=new Puesto(
                           Integer.parseInt(dato[0]),
                           buscarMedicoID(Integer.parseInt(dato[1])), //busca el id y guarda el medico
-                          toBoolean(dato[2])
+                          toBoolean(dato[2]),
+                          buscarPacienteID(Integer.parseInt(dato[3]))
                                        
                   );
                   
@@ -103,6 +105,37 @@ public class Controlador {
         }
         
     }
+    /*
+    Metodo para cargar los pacientes del archivo a una lista 
+    */
+    private static void cargarPacientesLista(){
+        File file=new File("src\\recursos\\pacientes.txt");
+        String linea;
+        pacienteslista=new LinkedList<>();
+        try {
+            FileReader f =new FileReader(file);
+            BufferedReader b=new BufferedReader(f);
+            while((linea=b.readLine())!=null){
+                  String[] dato=linea.split(",");
+                  Paciente p=new Paciente(
+                          dato[0],
+                          dato[1],
+                          Integer.parseInt(dato[2]),
+                          dato[3],
+                          dato[4],
+                          Integer.parseInt(dato[5])//el id es incremental, no es necesario agregarlo
+                  );
+                  
+                  pacienteslista.add(p);
+            }
+            b.close();
+            
+        } catch (Exception e) {
+            System.out.println("Archivo no encontrado");
+        }
+        
+    }
+    
     private static Boolean toBoolean(String i){
         if(i.equals("true")){
             return true;
@@ -110,7 +143,7 @@ public class Controlador {
             return false;
         }
     }
-    public static void eliminarAsignacion(Medico m){
+    public static void eliminarAsignacionPuestoMedico(Medico m){
         Iterator<Puesto> it=puestos.iterator();
         
         while(it.hasNext()){
@@ -135,8 +168,29 @@ public class Controlador {
         }
         return null;     
     }
+    private static Paciente buscarPacienteID(int id){
+        if (id==0){//no tiene paciente asignado
+            return new Paciente();
+        }
+        Iterator<Paciente> it=pacienteslista.iterator();
+        
+        while(it.hasNext()){
+            Paciente p=it.next();
+            if(p.getIdP()==id){//si es el id que buscamos
+                return p;
+            }            
+        }
+        return null;     
+    }
     public static void crearAlerta(String titulo,String mensaje){
         Alert alert=new Alert(Alert.AlertType.ERROR);
+        alert.setHeaderText(null);
+        alert.setTitle(titulo);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+    public static void crearNotificacion(String titulo,String mensaje){
+        Alert alert=new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
         alert.setTitle(titulo);
         alert.setContentText(mensaje);

@@ -30,7 +30,7 @@ public class SistemaDeTurnos extends Application{
     public static void main(String[] args) {
         launch(args);
      
-        System.out.println( agregarPaciente("Cristina", "Guerrero", "Masculino",23, "Covid 19"));
+        //System.out.println( agregarPaciente("Cristina", "Guerrero", "Masculino",23, "Covid 19"));
     }
 
    

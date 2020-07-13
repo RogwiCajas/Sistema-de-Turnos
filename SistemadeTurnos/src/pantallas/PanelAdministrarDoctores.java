@@ -160,7 +160,8 @@ public class PanelAdministrarDoctores extends Pane{
             if(!this.doctores.contains(m)){//para evitar repetir
                 this.doctores.add(m);
                 this.tbldoctores.setItems(doctores);
-                //agregar alerta exitosa
+                Controlador.crearNotificacion("Confirmacion", "Medico Creado Correctamente");
+                //rolador.crearNotificacion("Confirmacion", "Medico Creado Correctamente");agregar alerta exitosa
             } else{
                 Controlador.crearAlerta("ERROR", "El medico ya existe!");
             }
@@ -175,13 +176,14 @@ public class PanelAdministrarDoctores extends Pane{
             //Obtengo el selected
             Medico m=this.tbldoctores.getSelectionModel().getSelectedItem();
             //Buscaa y elimina asignaciones
-            Controlador.eliminarAsignacion(m);
+            Controlador.eliminarAsignacionPuestoMedico(m);
             //elimina el doctor de la base
             this.doctores.remove(m);
             //actualiza la vista
             this.tbldoctores.setItems(doctores);
             //System.out.println(Controlador.getDoctores());
             //agregar alerta exitosa
+            Controlador.crearNotificacion("Confirmacion", "Medico Eliminado Correctamente");
             
         } catch (Exception e) {
             Controlador.crearAlerta("ERROR", e.getMessage());

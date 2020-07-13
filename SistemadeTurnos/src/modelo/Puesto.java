@@ -16,19 +16,22 @@ public class Puesto {
     private int id;
     private Medico doctor;
     private Boolean estado;
+    private Paciente paciente;
 
-    public Puesto( Medico doctor, Boolean estado) {
+    public Puesto( Medico doctor, Boolean estado, Paciente p) {
         this.id = Puesto.idI++;
         this.doctor = doctor;
         this.estado = estado;
+        this.paciente=p;
     }
-    public Puesto( int id,Medico doctor, Boolean estado) {
+    public Puesto( int id,Medico doctor, Boolean estado, Paciente p) {
         idI++;
         this.id = id;
         this.doctor = doctor;
         this.estado = estado;
+        this.paciente=p;
     }
-    public Puesto(){
+    public Puesto(){//usar para crear instancias vacias
         
     }
 
@@ -56,6 +59,22 @@ public class Puesto {
         this.estado = estado;
     }
 
+    public static int getIdI() {
+        return idI;
+    }
+
+    public static void setIdI(int idI) {
+        Puesto.idI = idI;
+    }
+
+    public Paciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(Paciente paciente) {
+        this.paciente = paciente;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;
