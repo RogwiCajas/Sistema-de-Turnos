@@ -34,7 +34,7 @@ public class SistemaDeTurnos extends Application{
     }
 
    
-    
+    /*
     @Override
     public void start(Stage stage)  {
         
@@ -43,15 +43,18 @@ public class SistemaDeTurnos extends Application{
         stage.setScene(new PanelPrincipal().getNewScene());
         stage.show();
     }
-    
+    */
     //Descomentar y comentar el start de arriba para probar paneles de administracion
-    /*
+    
     @Override
     public void start(Stage stage)  {
+        Controlador.iniciarSistema();
+        
         Scene scene = new Scene(new PanelAdministrar(stage).getRoot(),700,700);
+        stage.setTitle("Menu Administrar");
         stage.setScene(scene);
         stage.show();
     }
-    */
+    
     
 }

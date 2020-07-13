@@ -4,17 +4,28 @@
  * and open the template in the editor.
  */
 package pantallas;
+import controlador.Controlador;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import modelo.Medico;
+import modelo.Puesto;
 
 /**
  *
@@ -25,7 +36,24 @@ public class PanelAdministrarPuestos extends Pane{
     private Button crearPuesto;
     private Button eliminarPuesto;
     private Button atras;
-    //atributo para mostrar tabla de puestos
+    //labels
+    private Label lDisponible;
+    //combobox de doctores
+    private ComboBox<Medico> cb;
+    
+    //Tabla para mostrar Puestos
+    private TableView<Puesto> tblpuestos;
+    private TableColumn colIDM;
+    private TableColumn colIDP;
+    private TableColumn colEstado;
+    
+    private ObservableList<Puesto> puestos;
+     //atributo para mostrar tabla de puestos
+    private HBox botones;
+    private HBox crud;
+    private VBox labels;
+    private VBox ingresos;
+    
     private VBox panel;
     private Pane root;
     
@@ -39,16 +67,76 @@ public class PanelAdministrarPuestos extends Pane{
         this.root=new StackPane(panel);
         
         //nodos a usar
+        //nodos a usar
         this.label= new Label("ADMINISTRAR PUESTOS");
         this.crearPuesto= new Button("Crear Puesto");
         this.eliminarPuesto=new Button("Eliminar Puesto");
         this.atras=new Button("Volver");
+        
+        this.lDisponible=new Label("Escoga Doctor asignado: ");
+        //cambiar por una lista global de Doctores desocupados
+        this.cb=new ComboBox<>(FXCollections.observableList(Controlador.getDoctores()));
+        //tabla
+        cargarTabla();
         //formatos de los nodos
         formato();
         //acciones de los nodos
         setearAcciones(stage);
         //Llenamos el nodo root
-        panel.getChildren().addAll(label,crearPuesto,eliminarPuesto,atras);
+        this.botones=new HBox(200);
+        botones.getChildren().addAll(crearPuesto,eliminarPuesto);
+        this.crud=new HBox(20);
+        this.labels=new VBox(15);
+        this.ingresos=new VBox(5);
+        labels.getChildren().addAll(lDisponible);
+        ingresos.getChildren().addAll(cb);
+        crud.getChildren().addAll(labels,ingresos);
+        
+        panel.getChildren().addAll(label,tblpuestos,botones,crud,atras);//Vbox
+        
+    }
+    private void agregarPuesto(){//Validar entradas segun tipo
+        Puesto p;
+        try {
+            
+            p=new Puesto(cb.getValue(),true);
+            
+            if(!this.puestos.contains(p)){//para evitar repetir
+                if(p.getDoctor()==null){
+                    p.setEstado(Boolean.FALSE);
+                }
+                this.puestos.add(p);
+                this.tblpuestos.setItems(puestos);
+                System.out.println("Puesto Guardado");
+                
+            } else{
+                System.err.println("Puesto Repetido");
+            }
+            
+        } catch (Exception e) {
+            System.err.println("Complete todos los campos");
+        }
+        //Medico m=new Medico(nombre, apellidos, edad, genero,especialidad);
+        
+    }
+    private void cargarTabla(){
+        
+        this.puestos=FXCollections.observableList(Controlador.getPuestos());//setea medicos en la tabla
+              
+        this.tblpuestos=new TableView<>();
+        this.colIDP=new TableColumn("ID Puesto");
+        this.colIDM=new TableColumn("ID Medico");
+        this.colEstado=new TableColumn("Estado");
+               
+        tblpuestos.getColumns().addAll(colIDP,colIDM,colEstado);
+        tblpuestos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        this.colIDP.setCellValueFactory(new PropertyValueFactory("id"));
+        this.colIDM.setCellValueFactory(new PropertyValueFactory("doctor"));
+        this.colEstado.setCellValueFactory(new PropertyValueFactory("estado"));
+        
+        //actualiza la tabla
+        this.tblpuestos.setItems(puestos);
         
     }
     private void formato(){
@@ -82,8 +170,8 @@ public class PanelAdministrarPuestos extends Pane{
         crearPuesto.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("Guarda puesto");
+                            agregarPuesto();
+                            
 			}
 	});
         eliminarPuesto.setOnAction( new EventHandler<ActionEvent>() {

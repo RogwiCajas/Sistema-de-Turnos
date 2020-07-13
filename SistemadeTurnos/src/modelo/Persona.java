@@ -89,6 +89,11 @@ public class Persona {
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Persona{" + "nombres=" + nombres + ", apellidos=" + apellidos + ", edad=" + edad + ", genero=" + genero + '}';
+    }
     
     
     

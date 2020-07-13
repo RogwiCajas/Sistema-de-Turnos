@@ -6,6 +6,7 @@
 package pantallas;
 
 
+import controlador.Controlador;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,7 +34,7 @@ import modelo.Medico;
  * @author cajas
  */
 public class PanelAdministrarDoctores extends Pane{
-    LinkedList<Medico> listamedicos;
+    //LinkedList<Medico> listamedicos;
     private Label label;
     private Button crearDoctor;
     private Button eliminarDoctor;
@@ -70,6 +71,7 @@ public class PanelAdministrarDoctores extends Pane{
     
     public PanelAdministrarDoctores(Stage stage){
         iniciar( stage);
+        
     }
     private void iniciar(Stage stage){
         //Iniciamos Root y panel principal
@@ -94,37 +96,19 @@ public class PanelAdministrarDoctores extends Pane{
         this.especialidadtxt=new TextField();
         this.edadtxt=new TextField();
         this.generotxt=new TextField();
+        //Cargar tabla y sus columnas
+        cargarTabla();
         
-        //this.doctores=FXCollections.observableArrayList();
-        this.listamedicos=new LinkedList<>();
-        listamedicos.add(new Medico("isaac","solis",28,"M","Medicina general"));
-        this.doctores=FXCollections.observableList(listamedicos);//setea medicos en la tabla
-               
-        this.tbldoctores=new TableView<>();
-        this.colNombre=new TableColumn("Nombre");
-        this.colApellidos=new TableColumn("Apellidos");
-        this.colEdad=new TableColumn("Edad");
-        this.colGenero=new TableColumn("Genero");
-        this.colId=new TableColumn("Id");
-        this.colEspecialidad=new TableColumn("Especialidad");
-        tbldoctores.getColumns().addAll(colNombre,colApellidos,colEdad,colGenero,colId,colEspecialidad);
-        tbldoctores.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        
-        this.colNombre.setCellValueFactory(new PropertyValueFactory("nombres"));
-        this.colApellidos.setCellValueFactory(new PropertyValueFactory("apellidos"));
-        this.colEdad.setCellValueFactory(new PropertyValueFactory("edad"));
-        this.colGenero.setCellValueFactory(new PropertyValueFactory("genero"));
-        this.colEspecialidad.setCellValueFactory(new PropertyValueFactory("especialidad"));
-        this.colId.setCellValueFactory(new PropertyValueFactory("id"));
         //formatos de los nodos
         formato();
         //acciones de los nodos
         setearAcciones(stage);
+        
         //Organizacion pantalla
         this.botones=new HBox(200);
         botones.getChildren().addAll(crearDoctor,eliminarDoctor);
         this.crud=new HBox(20);
-        this.labels=new VBox(5);
+        this.labels=new VBox(15);
         this.ingresos=new VBox(5);
         labels.getChildren().addAll(lNombre,lapellido,lespecialidad,ledad,lgenero);
         ingresos.getChildren().addAll(nombretxt,apellidotxt,especialidadtxt,edadtxt,generotxt);
@@ -134,7 +118,32 @@ public class PanelAdministrarDoctores extends Pane{
         
         
     }
-    private void agregarMedico(){
+    private void cargarTabla(){
+        
+        this.doctores=FXCollections.observableList(Controlador.getDoctores());//setea medicos en la tabla
+              
+        this.tbldoctores=new TableView<>();
+        this.colNombre=new TableColumn("Nombre");
+        this.colApellidos=new TableColumn("Apellidos");
+        this.colEdad=new TableColumn("Edad");
+        this.colGenero=new TableColumn("Genero");
+        this.colId=new TableColumn("Id");
+        this.colEspecialidad=new TableColumn("Especialidad");
+        
+        tbldoctores.getColumns().addAll(colNombre,colApellidos,colEdad,colGenero,colId,colEspecialidad);
+        tbldoctores.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        
+        this.colNombre.setCellValueFactory(new PropertyValueFactory("nombres"));
+        this.colApellidos.setCellValueFactory(new PropertyValueFactory("apellidos"));
+        this.colEdad.setCellValueFactory(new PropertyValueFactory("edad"));
+        this.colGenero.setCellValueFactory(new PropertyValueFactory("genero"));
+        this.colEspecialidad.setCellValueFactory(new PropertyValueFactory("especialidad"));
+        this.colId.setCellValueFactory(new PropertyValueFactory("idM"));
+        //actualiza la tabla
+        this.tbldoctores.setItems(doctores);
+        
+    }
+    private void agregarMedico(){//Validar entradas segun tipo
         String nombre=this.nombretxt.getText();
         String apellidos=this.apellidotxt.getText();
         int edad=Integer.parseInt(this.edadtxt.getText());
@@ -147,6 +156,8 @@ public class PanelAdministrarDoctores extends Pane{
             if(!this.doctores.contains(m)){//para evitar repetir
                 this.doctores.add(m);
                 this.tbldoctores.setItems(doctores);
+                System.out.println("Doctor guardado");
+                
             } else{
                 System.err.println("Usuario Repetido");
             }
@@ -188,28 +199,25 @@ public class PanelAdministrarDoctores extends Pane{
         crearDoctor.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("Guarda doctor");
-                            agregarMedico();//cambiar par que guarde en la tabla y en la lista global
+                            
+                            agregarMedico();
 			}
 	});
         eliminarDoctor.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
                             //setea el root a la ventana siguiente
-                            System.out.println("elimina doctor");
+                            System.out.println("Doctor Eliminado, no implementado");
 			}
 	});
         atras.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("Vulve al menu admin");
+                            
                             Scene escena= new Scene(new PanelAdministrar(stage).getRoot(),700,700);
-                            stage.setScene(escena);
-                            stage.show();
-                            
-                            
+                            stage.setTitle("Menu Administrar");
+                            stage.setScene(escena);                            
+                            stage.show();                                                      
 			}
 	});
     }

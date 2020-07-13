@@ -6,6 +6,7 @@
 package controlador;
 
 import java.io.*;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import javafx.scene.media.Media;
@@ -37,11 +38,93 @@ public class Controlador {
     
     
     
-    
+    public static void iniciarSistema(){//Llama a todos los metodos de carga de archivos a sus respectivas listas
+        cargarDoctores();
+        cargarPuestos();
+    }
    
     
     
     //metodos para cargar los arreglos
+    private static void cargarDoctores(){
+        File file=new File("src\\recursos\\medicos.txt");
+        String linea;
+        doctores=new LinkedList<>();
+        try {
+            FileReader f =new FileReader(file);
+            BufferedReader b=new BufferedReader(f);
+            while((linea=b.readLine())!=null){
+                  String[] dato=linea.split(",");
+                  Medico m=new Medico(
+                          dato[0],
+                          dato[1],
+                          Integer.parseInt(dato[2]),
+                          dato[3],
+                          dato[4],
+                          Integer.parseInt(dato[5])//el id es incremental, no es necesario agregarlo
+                  );
+                  
+                  doctores.add(m);
+            }
+            b.close();
+            
+        } catch (Exception e) {
+            System.out.println("Archivo no encontrado");
+        }
+        
+        
+    }
+    /*
+    * Funcion que carga los Puestos del archivo plano a la Lista global
+    */
+    private static void cargarPuestos(){
+        File file=new File("src\\recursos\\puestos.txt");
+        String linea;
+        puestos=new LinkedList<>();
+        try {
+            FileReader f =new FileReader(file);
+            BufferedReader b=new BufferedReader(f);
+            while((linea=b.readLine())!=null){
+                  String[] dato=linea.split(",");
+                  Puesto p=new Puesto(
+                          Integer.parseInt(dato[0]),
+                          buscarMedicoID(Integer.parseInt(dato[1])), //busca el id y guarda el medico
+                          toBoolean(dato[2])
+                                       
+                  );
+                  
+                  puestos.add(p);
+            }
+            b.close();
+            
+        } catch (Exception e) {
+            System.out.println("Archivo no encontrado");
+        }
+        
+    }
+    private static Boolean toBoolean(String i){
+        if(i.equals("true")){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    private static Medico buscarMedicoID(int id){
+        Iterator<Medico> it=doctores.iterator();
+        
+        while(it.hasNext()){
+            Medico m=it.next();
+            if(m.getIdM()==id){//si es el id que buscamos
+                return m;
+            }
+            
+        }
+        return null;
+        
+        
+    }
+    
+    
     public static LinkedList<Medico> cargarMedicos(){
         File file=new File("src/recursos/medicos.txt");
         String linea;
@@ -123,35 +206,7 @@ public class Controlador {
         }
         return true;
  }
-    /*
-    public static LinkedList<Puesto> cargarPuestos(){
-        File file=new File("puestos.txt");
-        String linea;
-        LinkedList<Puesto> puestos=new LinkedList<>();
-        try {
-            FileReader f =new FileReader(file);
-            BufferedReader b=new BufferedReader(f);
-            while((linea=b.readLine())!=null){
-                  String[] dato=linea.split(",");
-                  Puesto p=new Puesto(
-                          Integer.parseInt(dato[0]),
-                          new Medico(Integer.parseInt(dato[1])), //crea un medico null
-                          Boolean.getBoolean(dato[2])
-                                       
-                  );
-                  
-                  puestos.add(p);
-            }
-            b.close();
-            
-        } catch (Exception e) {
-            System.out.println("Archivo no encontrado");
-        }
-        
-        return puestos;
-    }
     
-    */
     
     /**
      * Funcion que se encarga de llenar la lista circula doble 
@@ -173,6 +228,31 @@ public class Controlador {
     
         
         
-        
+    //GETTER Y SETTER
+
+    public static LinkedList<Medico> getDoctores() {
+        return doctores;
+    }
+
+    public static void setDoctores(LinkedList<Medico> doctores) {
+        Controlador.doctores = doctores;
+    }
+
+    public static PriorityQueue<Paciente> getPacientes() {
+        return pacientes;
+    }
+
+    public static void setPacientes(PriorityQueue<Paciente> pacientes) {
+        Controlador.pacientes = pacientes;
+    }
+
+    public static LinkedList<Puesto> getPuestos() {
+        return puestos;
+    }
+
+    public static void setPuestos(LinkedList<Puesto> puestos) {
+        Controlador.puestos = puestos;
+    }
+    
     
 }

@@ -11,21 +11,21 @@ package modelo;
  */
 public class Medico extends Persona {
     private String especialidad;
-    private static int id=0;
+    private static int id=1;//Solo para incrementar
+    private int idM;
 
     public Medico(String nombres, String apellidos, int edad, String genero,String especialidad) {
         super(nombres, apellidos, edad, genero);
         this.especialidad = especialidad;
-        incremnentarId();
+        this.idM=id++;
     }
-    public Medico(){
-        super(null, null, 0, null);
-        this.especialidad = null;
-        incremnentarId();
+    public Medico(String nombres, String apellidos, int edad, String genero,String especialidad,int idM) {
+        super(nombres, apellidos, edad, genero);
+        this.especialidad = especialidad;
+        this.idM=idM;
+        id++;
     }
-    private static int incremnentarId(){
-        return id++;
-    }
+    
     public static int getId(){
         return id;
     }
@@ -42,6 +42,19 @@ public class Medico extends Persona {
 
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
+    }
+
+    public int getIdM() {
+        return idM;
+    }
+
+    public void setIdM(int idM) {
+        this.idM = idM;
+    }
+
+    @Override
+    public String toString() {
+        return "Medico{" +"nombre="+this.getNombres()+" "+this.getApellidos()+ ", especialidad=" + especialidad + ", ID Medico=" + idM + '}';
     }
     
     

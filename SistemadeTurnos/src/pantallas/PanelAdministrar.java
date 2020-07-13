@@ -92,10 +92,9 @@ public class PanelAdministrar extends Pane{
         puestos.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("puestos");
-                            //cambia el root al de la ventana siguiente
+                            
                             Scene  escena=new Scene(new PanelAdministrarPuestos(stage).getRoot(),700,700);
+                            stage.setTitle("Administrar Puestos");
                             stage.setScene(escena);
                             stage.show();
 			}
@@ -103,9 +102,9 @@ public class PanelAdministrar extends Pane{
         doctores.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("Presiono doctores");
+                            
                             Scene escena=new Scene(new PanelAdministrarDoctores(stage).getRoot(),700,700);
+                            stage.setTitle("Administrar Doctores");
                             stage.setScene(escena);
                             stage.show();
 			}
@@ -113,7 +112,7 @@ public class PanelAdministrar extends Pane{
         atras.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
+                            //Setear aqui cambio a la Pantalla de menus prinicpal
                             System.out.println("Presiono salir");
                             stage.close();
 			}
