@@ -99,9 +99,9 @@ public class Puesto {
         if (!Objects.equals(this.doctor, other.doctor)) {
             return false;
         }
-        if (!Objects.equals(this.estado, other.estado)) {
+        /*if (!Objects.equals(this.estado, other.estado)) {
             return false;
-        }
+        }*/
         return true;
     }
 
