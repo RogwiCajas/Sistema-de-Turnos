@@ -2,6 +2,7 @@ package pantallas;
 
 
 import controlador.Controlador;
+import static controlador.Controlador.getPacientes;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javafx.collections.FXCollections;
@@ -124,9 +125,8 @@ public class PanelCrearPaciente extends Pane{
             String sintoma=this.sintomatxt.getText();
 
             controlador.Controlador.agregarPaciente(nombre, apellidos, genero, edad, sintoma);
-            Paciente p= controlador.Controlador.getPacientes().peek();
-            System.out.println(controlador.Controlador.getPacientes());
-            if(controlador.Controlador.getPacientes().contains(p)){//para evitar repetir
+            Paciente p= getPacientes().peek();
+            if(getPacientes().contains(p)){//para evitar repetir
                  Controlador.crearNotificacion("Confirmacion", "Paciente Creado Correctamente");
             } else{
                 Controlador.crearAlerta("ERROR", "No se creo el paceinte");

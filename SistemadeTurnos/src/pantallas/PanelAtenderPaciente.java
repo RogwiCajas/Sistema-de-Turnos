@@ -43,13 +43,14 @@ public class PanelAtenderPaciente extends Pane{
     private Button atencionPuestos;
     private Button atras;
     
-    protected static int puestoEscogido=1;
+    protected static int puestoEscogido;
     
     //Tabla para mostrar Puestos
     private TableView<Puesto> tblpuestos;
     private TableColumn colIDM;
     private TableColumn colIDP;
-    private TableColumn colEstado;
+    private TableColumn colIdPaciente;
+ 
     
     private ObservableList<Puesto> puestos;
      //atributo para mostrar tabla de puestos
@@ -102,14 +103,15 @@ public class PanelAtenderPaciente extends Pane{
         this.tblpuestos=new TableView<>();
         this.colIDP=new TableColumn("ID Puesto");
         this.colIDM=new TableColumn("Medico");
-        this.colEstado=new TableColumn("Ocupado");
+        this.colIdPaciente=new TableColumn("id Paciente");
+
                
-        tblpuestos.getColumns().addAll(colIDP,colIDM,colEstado);
+        tblpuestos.getColumns().addAll(colIDP,colIDM,colIdPaciente);
         tblpuestos.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         
         this.colIDP.setCellValueFactory(new PropertyValueFactory("id"));
         this.colIDM.setCellValueFactory(new PropertyValueFactory("doctor"));
-        this.colEstado.setCellValueFactory(new PropertyValueFactory("estado"));
+        this.colIdPaciente.setCellValueFactory(new PropertyValueFactory("paciente"));
         
         //actualiza la tabla
         this.tblpuestos.setItems(puestos);
@@ -139,11 +141,15 @@ public class PanelAtenderPaciente extends Pane{
          atras.setAlignment(Pos.CENTER);
          
     }
+    private void guardarSelecion(){
+          Puesto p=this.tblpuestos.getSelectionModel().getSelectedItem();
+          puestoEscogido = p.getId();
+     }
     private  void setearAcciones(Stage stage){
         atencionPuestos.setOnAction( new EventHandler<ActionEvent>() {
+                        @Override
 			public void handle(ActionEvent t) {
-                            //setea el root a la ventana siguiente
-                            System.out.println("Presiono salir");
+                            guardarSelecion();                          
                             Scene escena= new Scene(new PanelAtencion(stage).getRoot(),700,700);
                             stage.setScene(escena);
                             stage.show();

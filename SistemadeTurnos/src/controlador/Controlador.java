@@ -43,8 +43,7 @@ public class Controlador {
         cargarDoctores();
         cargarPacientesLista();
         cargarPuestos();
-        System.out.println(puestos);
-    }
+     }
    
     
     
@@ -94,7 +93,7 @@ public class Controlador {
                           buscarMedicoID(Integer.parseInt(dato[1])), //busca el id y guarda el medico
                           toBoolean(dato[2]),
                           pacientes.poll()); //con la cola de prioridad se asignaria cada paciente a los puestos
-                          //buscarPacienteID(Integer.parseInt(dato[3]))               
+                          //buscarPacienteID(Integer.parseInt(dato[3])));          
                   puestos.add(p);
             }
             b.close();
@@ -164,9 +163,6 @@ public class Controlador {
     //funcion que agrega medicos al documento y a la lista
     public static boolean agregarMedicos(String nombre, String apellido, String genero, int edad, String especialidad){
         try {
-            Medico m; //no vi que se lo agrege a la lista
-            m=new Medico(nombre, apellido, edad, genero,especialidad);
-            controlador.Controlador.doctores.add(m); //agrego a la lista de doctor
             FileWriter fstream = new FileWriter("src/recursos/medicos.txt", true);
             BufferedWriter out = new BufferedWriter(fstream);
             out.write("\n"+nombre+","+apellido+","+genero+","+edad+","+especialidad);
@@ -303,8 +299,10 @@ public class Controlador {
         while(it.hasNext()){
             Puesto p=it.next();
             if(p.getId()==idPuesto){//Cuando encuentre al puesto con el paciete
+                pacienteslista.remove(p.getDoctor());
                 p.setPaciente(new Paciente());//agrego un objeto paciente vacio                
             }
+            
         }
     }
     

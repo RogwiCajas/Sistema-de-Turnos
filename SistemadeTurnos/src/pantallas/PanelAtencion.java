@@ -56,7 +56,6 @@ public class PanelAtencion extends Pane{
     private TextField recetatxt;
    
 
-     //atributo para mostrar tabla de puestos
     private HBox botones;
     private HBox crud;
     private VBox labels;
@@ -109,7 +108,7 @@ public class PanelAtencion extends Pane{
         botones.getChildren().addAll(atenderPaciente);
         this.crud=new HBox(20);
         this.labels=new VBox(15);
-        this.ingresos=new VBox(5);
+        this.ingresos=new VBox(13);
         labels.getChildren().addAll(lPuesto,lDoctor,lPaciente,lSintoma,lDiagostico,lRecete);
         ingresos.getChildren().addAll(lPuestoResult,lDoctorResult,lPacienteResult,lSintomaResult,diagnositotxt,recetatxt);
         crud.getChildren().addAll(labels,ingresos);
@@ -132,7 +131,7 @@ public class PanelAtencion extends Pane{
             if((diagnostico.isBlank()) || (receta.isBlank())){//para evitar repetir
                 Controlador.crearAlerta("ERROR", "Debe tener el paciente un diagnostico y una receta"); 
             } else{
-              Controlador.crearNotificacion("Confirmacion", "Paciente Atendido Correctamente");
+               Controlador.crearNotificacion("Confirmacion", "Paciente Atendido Correctamente");
                Controlador.agregarHistorial(Integer.parseInt(puesto),doctor,paciente,sintoma,diagnostico,receta);
                Controlador.eliminarAsignacionPuestoPaciente(puestoEscogido); //elimino al paciete del puesto 
                Controlador.asignarNuevoPaciente(puestoEscogido); //agrego nuevo paciente al puesto
