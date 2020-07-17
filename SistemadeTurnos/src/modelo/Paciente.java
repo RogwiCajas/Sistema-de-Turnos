@@ -3,31 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modelo;
-
-/**
+package modelo;/**
  *
  * @author cajas
  */
 public class Paciente extends Persona{
     private String sintoma;
+    private int prioritySintoma;
     private static int id=1;//Solo para incrementar
     private int idP;
 
-    public Paciente(String nombres, String apellidos, int edad, String genero,String sintoma) {
+    public Paciente(String nombres, String apellidos, int edad, String genero,String sintoma, int prioritySintoma) {
         super(nombres, apellidos, edad, genero);
         this.sintoma = sintoma;
+        this.prioritySintoma = prioritySintoma;
         this.idP =id++;
     }
-    public Paciente(String nombres, String apellidos, int edad, String genero,String sintoma, int idP) {
+    public Paciente(String nombres, String apellidos, int edad, String genero,String sintoma, int prioritySintoma, int idP) {
         super(nombres, apellidos, edad, genero);
         this.sintoma = sintoma;
+        this.prioritySintoma = prioritySintoma;
         this.idP =idP;
         id++;
     }
     public Paciente(){
         super("-","-",0,"-");
         this.sintoma="-";
+        this.prioritySintoma=10;
         
     }
     public String getSintoma() {
@@ -37,6 +39,17 @@ public class Paciente extends Persona{
     public void setSintoma(String sintoma) {
         this.sintoma = sintoma;
     }
+
+    public int getPrioritySintoma() {
+        return prioritySintoma;
+    }
+
+    public void setPrioritySintoma(int prioritySintoma) {
+  
+        
+        this.prioritySintoma = prioritySintoma;
+    }
+    
 
     public int getIdP() {
         return idP;
@@ -51,7 +64,7 @@ public class Paciente extends Persona{
         if(this.getIdP()==0){
             return "Paciente no Asignado";
         }
-        return "Paciente{" + "sintoma=" + sintoma + ", idP=" + idP + '}';
+        return "Paciente{" + "sintoma=" + sintoma + ", Priodifad" + prioritySintoma + ", idP=" + idP + '}';
     }
 
     

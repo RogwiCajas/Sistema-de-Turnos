@@ -7,7 +7,7 @@ package sistemadeturnos;
 
 import controlador.Controlador;
 import static controlador.Controlador.agregarPaciente;
-import static controlador.Controlador.cargarMedicos;
+import static controlador.Controlador.asignaPrioridad;
 import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,6 +16,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import modelo.Medico;
 import pantallas.PanelAdministrar;
+import pantallas.PanelPaciente;
 import pantallas.PanelPrincipal;
 
 /**
@@ -48,10 +49,9 @@ public class SistemaDeTurnos extends Application{
     
     @Override
     public void start(Stage stage)  {
-        Controlador.iniciarSistema();
-        
-        Scene scene = new Scene(new PanelAdministrar(stage).getRoot(),700,700);
-        stage.setTitle("Menu Administrar");
+        Controlador.iniciarSistema();        
+        Scene scene = new Scene(new PanelPaciente(stage).getRoot(),700,700);
+        stage.setTitle("Menu Paciente");
         stage.setScene(scene);
         stage.show();
     }

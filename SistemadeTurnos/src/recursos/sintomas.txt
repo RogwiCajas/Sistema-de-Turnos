@@ -1,10 +1,10 @@
-vomito|3
-fiebre|2
-resfrio|2
-congestión nasal|3
-taquicardia|1
-problemas respiratorios|0
-dolor de cabeza|5
-corte profudno|0
-corte superficial|4
+vomito,3
+fiebre,2
+resfrio,2
+congestion nasal,3
+taquicardia,1
+problemas respiratorios,0
+dolor de cabeza,5
+corte profudno,0
+corte superficial,4
 

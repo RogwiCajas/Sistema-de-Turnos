@@ -107,7 +107,7 @@ public class Puesto {
 
     @Override
     public String toString() {
-        return "Puesto{" + "id=" + id + ", doctor=" + doctor + ", estado=" + estado + '}';
+        return "Puesto{" + "id=" + id + ", doctor=" + doctor + ", estado=" + estado + "paciente:" + paciente + '}';
     }
     
     
