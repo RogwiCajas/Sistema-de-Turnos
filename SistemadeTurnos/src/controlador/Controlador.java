@@ -306,8 +306,9 @@ public class Controlador {
         while(it.hasNext()){
             Puesto p=it.next();
             if(p.getId()==idPuesto){//Cuando encuentre al puesto con el paciete
-                pacienteslista.remove(p.getDoctor());
+                pacienteslista.remove(p.getPaciente());
                 p.setPaciente(new Paciente());//agrego un objeto paciente vacio                
+                p.setEstado(Boolean.FALSE);
             }
             
         }

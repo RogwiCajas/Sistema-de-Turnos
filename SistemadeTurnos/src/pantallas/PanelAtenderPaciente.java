@@ -10,6 +10,7 @@
  */
 package pantallas;
 import controlador.Controlador;
+import static controlador.Controlador.getPacientes;
 import java.util.Iterator;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +42,8 @@ import modelo.Puesto;
 public class PanelAtenderPaciente extends Pane{
     private Label label;
     private Button atencionPuestos;
+    private Button siguienteTurno;
+
     private Button atras;
     
     protected static int puestoEscogido;
@@ -76,6 +79,7 @@ public class PanelAtenderPaciente extends Pane{
         //nodos a usar
         this.label= new Label("Atencion de Pacientes");
         this.atencionPuestos= new Button("Ir a puesto");
+        this.siguienteTurno= new Button("Siguiente Turno");
          this.atras=new Button("Volver");
          
           //tabla
@@ -91,7 +95,7 @@ public class PanelAtenderPaciente extends Pane{
         this.ingresos=new VBox(5);
         crud.getChildren().addAll(labels,ingresos);
         
-        panel.getChildren().addAll(label,tblpuestos,botones,crud,atencionPuestos,atras);//Vbox
+        panel.getChildren().addAll(label,tblpuestos,botones,crud,atencionPuestos,siguienteTurno,atras);//Vbox
         
     }
    
@@ -117,6 +121,7 @@ public class PanelAtenderPaciente extends Pane{
         this.tblpuestos.setItems(puestos);
         
     }
+ 
     private void formato(){
         //formato y alineacion del panel principal
         panel.setPadding(new Insets(150,70,70,100));
@@ -132,18 +137,33 @@ public class PanelAtenderPaciente extends Pane{
         
         //Formato botones
         atencionPuestos.setStyle("-fx-background-color: Blue; -fx-text-fill: White;");
-         atras.setStyle("-fx-background-color: Blue; -fx-text-fill: White;");
+        siguienteTurno.setStyle("-fx-background-color: Blue; -fx-text-fill: White;");
+        atras.setStyle("-fx-background-color: Blue; -fx-text-fill: White;");
                
         atencionPuestos.setPrefSize(150, 40);
-         atras.setPrefSize(150, 40);
+        siguienteTurno.setPrefSize(150, 40);
+        atras.setPrefSize(150, 40);
          
         atencionPuestos.setAlignment(Pos.CENTER);
+        siguienteTurno.setPrefSize(150, 40);
          atras.setAlignment(Pos.CENTER);
          
     }
     private void guardarSelecion(){
           Puesto p=this.tblpuestos.getSelectionModel().getSelectedItem();
           puestoEscogido = p.getId();
+     }
+    
+    private void siguienteTurno(){
+          Puesto p=this.tblpuestos.getSelectionModel().getSelectedItem();
+          puestoEscogido = p.getId();
+          if(p.getPaciente().getIdP()==0 && !getPacientes().isEmpty()){ //valido que haya pacientes en la cola y que el id del paciente del puesto sea 0 
+              Controlador.crearNotificacion("Siguiente Turno", "Paciente ha sido enviado a un puesto");
+              p.setPaciente(getPacientes().poll()); //asigno paciente a puesyo
+              p.setEstado(Boolean.TRUE);    //le cambio estado
+          }else{
+              Controlador.crearAlerta("ERROR", "Puesto no valido para enviar al puesto");
+            }
      }
     private  void setearAcciones(Stage stage){
         atencionPuestos.setOnAction( new EventHandler<ActionEvent>() {
@@ -157,6 +177,18 @@ public class PanelAtenderPaciente extends Pane{
                             
 			}
 	});
+        siguienteTurno.setOnAction( new EventHandler<ActionEvent>() {
+                        @Override
+			public void handle(ActionEvent t) {
+                            siguienteTurno();                          
+                            Scene escena= new Scene(new PanelAtenderPaciente(stage).getRoot(),700,700);
+                            stage.setScene(escena);
+                            stage.show();
+                            
+                            
+			}
+	});
+
         
         atras.setOnAction( new EventHandler<ActionEvent>() {
 			@Override
