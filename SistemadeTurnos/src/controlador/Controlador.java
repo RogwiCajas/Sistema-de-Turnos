@@ -349,8 +349,26 @@ public class Controlador {
      * Funcion que se encarga de llenar la lista circula doble 
      * @param rutaProyecto 
      */
-    
     public static void llenarListaCircular(String rutaProyecto) {
+        File file=new File("src/recursos/videos.txt");
+        String linea;
+        videos=new CircularDoublyLinkedList<>();
+        
+        try {
+            FileReader f =new FileReader(file);
+            BufferedReader b=new BufferedReader(f);
+            
+            while((linea=b.readLine())!=null){
+                  
+                  videos.addLast(rutaProyecto + "\\videos\\" +linea);
+            }
+            b.close();
+            
+        } catch (Exception e) {
+            System.out.println("Archivo no encontrado");
+        } 
+    }
+    /*public static void llenarListaCircular(String rutaProyecto) {
         videos = new CircularDoublyLinkedList<>();
         String[] nombreVideos = {"zoom_1", "zoom_2", "zoom_3"};
         for (String nombreVideo : nombreVideos) {
@@ -359,7 +377,7 @@ public class Controlador {
         }
        
        
-        }
+        }*/
 
    
     

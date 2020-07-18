@@ -7,6 +7,7 @@ package pantallas;
 
 import controlador.Controlador;
 import java.io.File;
+import java.util.LinkedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -20,6 +21,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
+import modelo.Puesto;
 import tda.CircularDoublyLinkedList;
 import tda.Node;
 
@@ -29,16 +31,19 @@ import tda.Node;
  */
 public class PanelPrincipal {
     private CircularDoublyLinkedList<String> l;
+    private LinkedList<Integer> turnos;
     private MediaView mv;
     private Scene NewScene;
     private HBox video_puestos;
+    private VBox turnos_puestos;
     private HBox root;
+    private Label turno;
+    private Label puesto;
     MediaPlayer mediaPlayer;
     Pane panel;
     VBox caja;
     Label titulo;
     Button administrar;
-    Button crear_turnos;
     Button atender_puestos;
     
 
@@ -59,9 +64,13 @@ public class PanelPrincipal {
         mv.setFitWidth(650.0);
         
         panel=new Pane(mv);
-        panel.setMinSize(880.0,365.0);
-        video_puestos=new HBox();
-        video_puestos.getChildren().add(panel);
+        panel.setMinSize(650.0,370.0);
+        
+        video_puestos=new HBox(5);
+        
+        video_puestos.getChildren().addAll(panel);
+        
+        llenar_pantallar();
         root=new HBox(10);
         root.getChildren().addAll(video_puestos);
         iniciar();
@@ -69,6 +78,67 @@ public class PanelPrincipal {
    
         
     }
+    private void llenar_turnos(){
+        turnos=new LinkedList<>();
+        int i=1;
+        LinkedList<Puesto> puesto=Controlador.getPuestos();
+        System.out.println("tamaño "+puesto.size());
+        while(i<=puesto.size()){
+            System.out.println("valor de i "+i);
+            turnos.add(i++);
+           
+        }
+        
+    }
+     private void llenar_pantallar(){
+        turno=new Label("TURNO");
+        cambiar_labelprimervbox(turno);
+        puesto=new Label("PUESTO");
+        cambiar_labelsegundovbox(puesto);
+        HBox s=new HBox(5);
+        s.getChildren().addAll(turno,puesto);
+        llenar_turnos();
+        this.turnos_puestos=new VBox(5);
+        turnos_puestos.getChildren().add(s);
+        video_puestos.getChildren().add(turnos_puestos);
+        
+         
+        //V.getChildren().clear();
+        LinkedList<Puesto> puesto=Controlador.getPuestos();
+        for(int i=0;i<puesto.size();i++){
+           // V.getChildren().clear();
+
+            HBox ho=new HBox(5);
+            Label label=new Label("A"+String.valueOf(turnos.get(i)));
+            cambiar_labelprimervbox(label);
+            
+            Label label2 = new Label(String.valueOf(puesto.get(i).getId()));
+            cambiar_labelsegundovbox(label2);
+            ho.getChildren().addAll(label,label2);
+            turnos_puestos.getChildren().add(ho);
+            
+            
+        }
+        
+        
+        
+    }
+     private void cambiar_labelprimervbox(Label label){
+         
+        label.setFont(label.getFont().font(21));
+        label.setAlignment(Pos.CENTER);
+        label.setStyle("-fx-background-color: blue;");
+        label.setMinSize(120,50);
+        
+    }
+     private void cambiar_labelsegundovbox(Label label){
+         label.setFont(label.getFont().font(21));
+        label.setAlignment(Pos.CENTER);
+        label.setStyle("-fx-background-color: brown;");
+        label.setMinSize(120,50);
+       
+    }
+    
     
     
     private  void iniciar(){
@@ -76,22 +146,17 @@ public class PanelPrincipal {
         
         this.caja=new VBox(10);
         caja.setAlignment(Pos.CENTER);
-        caja.setTranslateX(110);
+        caja.setTranslateX(90);
         caja.setTranslateY(-50);
-        
         root.getChildren().add(caja);
-        
-        
         this.titulo= new Label("Menu");
         this.administrar= new Button("Administrar Paciente");
         this.atender_puestos=new Button("Administrar Puestos y Doctores");
-        this.crear_turnos=new Button("Turnos");
         
         estilo();
-        
         setearAcciones();
         
-        caja.getChildren().addAll(titulo,administrar,atender_puestos,crear_turnos);
+        caja.getChildren().addAll(titulo,administrar,atender_puestos);
         
     }
     private void estilo(){
@@ -101,19 +166,12 @@ public class PanelPrincipal {
         titulo.setAlignment(Pos.CENTER);
         titulo.setLayoutX(150);
         titulo.setLayoutY(80);
-        
-        
-        administrar.setStyle("-fx-background-color: Cyan; -fx-text-fill: Black;");
-        crear_turnos.setStyle("-fx-background-color: Cyan; -fx-text-fill: Black;");
-        atender_puestos.setStyle("-fx-background-color: Cyan; -fx-text-fill: Black;");
-        
-        
         administrar.setPrefSize(150, 40);
-        crear_turnos.setPrefSize(150, 40);
+        
         atender_puestos.setPrefSize(197, 40);
         
         administrar.setAlignment(Pos.CENTER);
-        crear_turnos.setAlignment(Pos.CENTER);
+        
         atender_puestos.setAlignment(Pos.CENTER);
         
     }
@@ -141,17 +199,7 @@ public class PanelPrincipal {
                             second_stage.show();
 			}
 	});
-        crear_turnos.setOnAction( new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent t) {
-                                                        //aqio ira para crear pacientes
-                            Stage second_stage = new Stage();                            
-                            Scene escena=new Scene(new PanelAdministrar(second_stage).getRoot(),700,700);
-                            second_stage.setTitle("Administrar Puestos y Doctores");
-                            second_stage.setScene(escena);
-                            second_stage.show();
-			}
-	});
+        
        
     }
     

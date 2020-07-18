@@ -172,6 +172,7 @@ public class PanelCrearPaciente extends Pane{
         edadtxt.setText(null);
         sintomatxt.setText(null);
         generotxt.setText(null);
+        
     }
     
     private  void setearAcciones(Stage stage){
@@ -180,6 +181,7 @@ public class PanelCrearPaciente extends Pane{
 			public void handle(ActionEvent t) {
                             
                             agregarPaciente();
+                            
                             vaciarText();
 			}
 	});
