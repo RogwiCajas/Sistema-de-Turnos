@@ -34,7 +34,14 @@ public class SistemaDeTurnos extends Application{
         //System.out.println( agregarPaciente("Cristina", "Guerrero", "Masculino",23, "Covid 19"));
     }
 
-   
+    @Override
+    public void start(Stage stage)  {
+        Controlador.iniciarSistema();                
+        stage.setTitle("Reproductor de video Java FX - Lista Circular");
+        stage.setScene(new PanelPrincipal().getNewScene());
+        
+        stage.show();
+    }
     /*
     @Override
     public void start(Stage stage)  {
@@ -47,14 +54,14 @@ public class SistemaDeTurnos extends Application{
     */
     //Descomentar y comentar el start de arriba para probar paneles de administracion
     
-    @Override
+   /* @Override
     public void start(Stage stage)  {
         Controlador.iniciarSistema();        
         Scene scene = new Scene(new PanelPaciente(stage).getRoot(),700,700);
         stage.setTitle("Menu Paciente");
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
     
     
 }
