@@ -175,15 +175,19 @@ public class PanelAdministrarDoctores extends Pane{
         try {
             //Obtengo el selected
             Medico m=this.tbldoctores.getSelectionModel().getSelectedItem();
-            //Buscaa y elimina asignaciones
-            Controlador.eliminarAsignacionPuestoMedico(m);
-            //elimina el doctor de la base
-            this.doctores.remove(m);
-            //actualiza la vista
-            this.tbldoctores.setItems(doctores);
-            //System.out.println(Controlador.getDoctores());
-            //agregar alerta exitosa
-            Controlador.crearNotificacion("Confirmacion", "Medico Eliminado Correctamente");
+            //Buscaa y elimina asignaciones solo si el puesto no este ocupaado.
+            if(Controlador.eliminarAsignacionPuestoMedico(m)==true){
+                //elimina el doctor de la base
+                this.doctores.remove(m);
+                //actualiza la vista
+                this.tbldoctores.setItems(doctores);
+                //System.out.println(Controlador.getDoctores());
+                //agregar alerta exitosa
+                Controlador.crearNotificacion("Confirmacion", "Medico Eliminado Correctamente");
+            }else{
+                Controlador.crearAlerta("Cuidado", "Este medico se encuentra asignado a un puesto con paciente, Primero debe acabar de atender al paciente!");
+            }
+            
             
         } catch (Exception e) {
             Controlador.crearAlerta("ERROR", e.getMessage());

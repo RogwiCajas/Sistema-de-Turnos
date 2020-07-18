@@ -111,8 +111,14 @@ public class PanelAdministrarPuestos extends Pane{
                     //p.setEstado(Boolean.FALSE);
                     p.setDoctor(new Medico());//ASIGNO UN MEDICO VACIO si no escogio ningun medico
                 }
+                if(p.getDoctor().getIdM()!=0 &&!Controlador.getPacientes().isEmpty()){
+                    //desencolo un paciente si hay un doctor no nulo y si hay pacientes en cola
+                    p.setPaciente(Controlador.getPacientes().poll());
+                    p.setEstado(Boolean.TRUE);
+                }
                 this.puestos.add(p);
                 this.tblpuestos.setItems(puestos);
+                //Escribir puesto en puestos.txt
                 Controlador.crearNotificacion("Confirmacion", "Puesto Creado Correctamente!");
                 
             } else{
@@ -156,6 +162,13 @@ public class PanelAdministrarPuestos extends Pane{
                     this.tblpuestos.setItems(puestos);
                     //agregar alerta exitosa
                     Controlador.crearNotificacion("Confirmacion", "Medico Asignado exitosamente!");
+                    //Ahora que le setee un doctor compruebo que setee un doctor valido y le asigno paciente
+                    if(p.getDoctor().getIdM()!=0 &&!Controlador.getPacientes().isEmpty()){
+                    //desencolo un paciente si hay un doctor no nulo y si hay pacientes en cola
+                            p.setPaciente(Controlador.getPacientes().poll());
+                            p.setEstado(Boolean.TRUE);
+                    }
+                    
                     actualizarPantalla(stage);
                     
                 }
@@ -189,6 +202,7 @@ public class PanelAdministrarPuestos extends Pane{
                 //actualiza la vista
                 this.tblpuestos.setItems(puestos);
                 //agregar alerta exitosa
+                //aqui deberia actualizar los puestos
                 Controlador.crearNotificacion("Confirmacion", "Medico Eliminado Correctamente");
                 
             }else{//si no esta vacio, pide que porfavor elimines

@@ -1,0 +1,4 @@
+
+ Puesto de Atencion1, Medico; Isaac Solis, Paciente: Abraham Aguilar, Sintoma: 1, Diagnostico: Covid, se va a morir, Receta: no hay f
+ Puesto de Atencion3, Medico; Eduardo Cruz, Paciente: Mathias Ruiz, Sintoma: 3, Diagnostico: Fiebre comun, Receta: medicina para la fiebre
+ Puesto de Atencion3, Medico; Eduardo Cruz, Paciente: Keyco Chang, Sintoma: 3, Diagnostico: Gripe, Receta: antigripal

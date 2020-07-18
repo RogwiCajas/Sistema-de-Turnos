@@ -48,6 +48,7 @@ public class Controlador {
     
     
     //metodos para cargar los arreglos
+    
     private static void cargarDoctores(){
         File file=new File("src\\recursos\\medicos.txt");
         String linea;
@@ -282,18 +283,24 @@ public class Controlador {
     }
     
     //wlimina la asignacion del doctor
-    public static void eliminarAsignacionPuestoMedico(Medico m){
+    public static boolean eliminarAsignacionPuestoMedico(Medico m){
         Iterator<Puesto> it=puestos.iterator();
         //creo que primero debriamos prenguar tambien si el el puesto no tiene un paciente
         while(it.hasNext()){
             Puesto p=it.next();
             if(p.getDoctor().equals(m)){//Cuando encuentre al puesto con el medico
-                p.setDoctor(new Medico());//agrego un objeto medico vacio
-                p.setEstado(Boolean.FALSE);
-                
+                //compruebo si dicho puesto no tiene un paciente
+                if(p.getEstado().equals(Boolean.FALSE)){
+                    p.setDoctor(new Medico());//agrego un objeto medico vacio
+                    return true;//el puesto puede ser borrado
+                }else{
+                    return false;//el puesto esta atendiendo no se puede borrar
+                }
             }
         }
+        return true; //el medico no esta asigando se puede borrar
     }
+    
     public static void eliminarAsignacionPuestoPaciente(int idPuesto){
         Iterator<Puesto> it=puestos.iterator();
         while(it.hasNext()){
