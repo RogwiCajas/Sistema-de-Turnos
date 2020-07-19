@@ -8,9 +8,9 @@ de los sintomas del paciente.
 ## **Diagrama:**
 ![Diagrama de Clases del Programa](/DiagramadeClases.png)
 ## **Autores:**
-_Isaac Solis_
-_Alejandra Quimi_
-_Rogwi Cajas_
+- _Isaac Solis_
+- _Alejandra Quimi_
+- _Rogwi Cajas_
 
 ## **Información:**
 
