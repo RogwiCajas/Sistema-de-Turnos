@@ -22,6 +22,7 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.stage.Stage;
 import modelo.Puesto;
+import modelo.Turno;
 import tda.CircularDoublyLinkedList;
 import tda.Node;
 
@@ -31,20 +32,22 @@ import tda.Node;
  */
 public class PanelPrincipal {
     private CircularDoublyLinkedList<String> l;
-    private LinkedList<Integer> turnos;
+    public static LinkedList<Turno> turnos=new LinkedList<>();
     private MediaView mv;
     private Scene NewScene;
     private HBox video_puestos;
-    private VBox turnos_puestos;
+    public static VBox turnos_puestos=new VBox(5);
     private HBox root;
     private Label turno;
     private Label puesto;
+    
     MediaPlayer mediaPlayer;
     Pane panel;
     VBox caja;
     Label titulo;
     Button administrar;
     Button atender_puestos;
+    
     
 
     public Scene getNewScene() {
@@ -53,7 +56,7 @@ public class PanelPrincipal {
 
   
    
-    public PanelPrincipal() {
+     public PanelPrincipal() {
         Controlador.llenarListaCircular(System.getProperty("user.dir"));
         l=Controlador.getVideos();
         reproducirListaVideos();
@@ -70,7 +73,11 @@ public class PanelPrincipal {
         
         video_puestos.getChildren().addAll(panel);
         
+        
+        
         llenar_pantallar();
+        
+        
         root=new HBox(10);
         root.getChildren().addAll(video_puestos);
         iniciar();
@@ -79,40 +86,35 @@ public class PanelPrincipal {
         
     }
     private void llenar_turnos(){
-        turnos=new LinkedList<>();
-        int i=1;
+        
         LinkedList<Puesto> puesto=Controlador.getPuestos();
-        System.out.println("tamaño "+puesto.size());
-        while(i<=puesto.size()){
-            System.out.println("valor de i "+i);
-            turnos.add(i++);
-           
+        for(int i=0;i<puesto.size();i++){
+            turnos.add(new Turno(puesto.get(i)));
+            
         }
+        
         
     }
      private void llenar_pantallar(){
+         
         turno=new Label("TURNO");
         cambiar_labelprimervbox(turno);
         puesto=new Label("PUESTO");
         cambiar_labelsegundovbox(puesto);
         HBox s=new HBox(5);
+        
         s.getChildren().addAll(turno,puesto);
         llenar_turnos();
-        this.turnos_puestos=new VBox(5);
         turnos_puestos.getChildren().add(s);
         video_puestos.getChildren().add(turnos_puestos);
         
-         
-        //V.getChildren().clear();
-        LinkedList<Puesto> puesto=Controlador.getPuestos();
-        for(int i=0;i<puesto.size();i++){
-           // V.getChildren().clear();
+        for(int i=0;i<turnos.size();i++){
 
             HBox ho=new HBox(5);
-            Label label=new Label("A"+String.valueOf(turnos.get(i)));
+            Label label=new Label("A"+String.valueOf(turnos.get(i).getId()));
             cambiar_labelprimervbox(label);
             
-            Label label2 = new Label(String.valueOf(puesto.get(i).getId()));
+            Label label2 = new Label(String.valueOf(turnos.get(i).getPuesto().getId()));
             cambiar_labelsegundovbox(label2);
             ho.getChildren().addAll(label,label2);
             turnos_puestos.getChildren().add(ho);
@@ -123,7 +125,7 @@ public class PanelPrincipal {
         
         
     }
-     private void cambiar_labelprimervbox(Label label){
+    public static void cambiar_labelprimervbox(Label label){
          
         label.setFont(label.getFont().font(21));
         label.setAlignment(Pos.CENTER);
@@ -131,7 +133,7 @@ public class PanelPrincipal {
         label.setMinSize(120,50);
         
     }
-     private void cambiar_labelsegundovbox(Label label){
+    public static void cambiar_labelsegundovbox(Label label){
          label.setFont(label.getFont().font(21));
         label.setAlignment(Pos.CENTER);
         label.setStyle("-fx-background-color: brown;");
