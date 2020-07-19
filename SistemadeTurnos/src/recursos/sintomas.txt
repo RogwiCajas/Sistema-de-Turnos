@@ -7,4 +7,3 @@ problemas respiratorios,0
 dolor de cabeza,5
 corte profudno,0
 corte superficial,4
-
