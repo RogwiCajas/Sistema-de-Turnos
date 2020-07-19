@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="SistemadeTurnos">
+  <ClassDiagramComponents>
+    <Class name="Controlador" package="controlador" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="doctores" type="LinkedList&lt;Medico&gt;" visibility="private" isStatic="true"/>
+        <Field name="pacienteslista" type="LinkedList&lt;Paciente&gt;" visibility="private" isStatic="true"/>
+        <Field name="sintomas" type="LinkedList&lt;Sintoma&gt;" visibility="private" isStatic="true"/>
+        <Field name="pacientes" type="PriorityQueue&lt;Paciente&gt;" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="puestos" type="LinkedList&lt;Puesto&gt;" visibility="private" isStatic="true"/>
+        <Field name="videos" type="CircularDoublyLinkedList&lt;String&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getVideos" returnType="CircularDoublyLinkedList&lt;String&gt;" visibility="public" isStatic="true"/>
+        <Method name="iniciarSistema" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="cargarDoctores" returnType="void" visibility="private" isStatic="true"/>
+        <Method name="cargarPuestos" returnType="void" visibility="private" isStatic="true"/>
+        <Method name="cargarPacientesLista" returnType="void" visibility="private" isStatic="true"/>
+        <Method name="cargarSintomas" returnType="void" visibility="private" isStatic="true"/>
+        <Method name="agregarMedicos" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="genero"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="especialidad"/>
+        </Method>
+        <Method name="agregarHistorial" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="int" name="puesto"/>
+          <Argument type="String" name="medico"/>
+          <Argument type="String" name="paciente"/>
+          <Argument type="String" name="sintoma"/>
+          <Argument type="String" name="diagnostico"/>
+          <Argument type="String" name="receta"/>
+        </Method>
+        <Method name="agregarPaciente" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="genero"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="sintoma"/>
+        </Method>
+        <Method name="buscarPuesto" returnType="Puesto" visibility="private" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="buscarMedicoID" returnType="Medico" visibility="private" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="buscarPacienteID" returnType="Paciente" visibility="private" isStatic="true">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="obtenerNombre" returnType="String" visibility="public" isStatic="true">
+          <Argument type="int" name="id"/>
+          <Argument type="int" name="tipo"/>
+        </Method>
+        <Method name="toBoolean" returnType="Boolean" visibility="private" isStatic="true">
+          <Argument type="String" name="i"/>
+        </Method>
+        <Method name="eliminarAsignacionPuestoMedico" returnType="boolean" visibility="public" isStatic="true">
+          <Argument type="Medico" name="m"/>
+        </Method>
+        <Method name="eliminarAsignacionPuestoPaciente" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="idPuesto"/>
+        </Method>
+        <Method name="asignarNuevoPaciente" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="idPuesto"/>
+        </Method>
+        <Method name="crearAlerta" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="titulo"/>
+          <Argument type="String" name="mensaje"/>
+        </Method>
+        <Method name="crearNotificacion" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="titulo"/>
+          <Argument type="String" name="mensaje"/>
+        </Method>
+        <Method name="asignaPrioridad" returnType="int" visibility="public" isStatic="true">
+          <Argument type="String" name="sintoma"/>
+        </Method>
+        <Method name="llenarListaCircular" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="rutaProyecto"/>
+        </Method>
+        <Method name="getDoctores" returnType="LinkedList&lt;Medico&gt;" visibility="public" isStatic="true"/>
+        <Method name="setDoctores" returnType="void" visibility="public" isStatic="true">
+          <Argument type="LinkedList&lt;Medico&gt;" name="doctores"/>
+        </Method>
+        <Method name="getPacientes" returnType="PriorityQueue&lt;Paciente&gt;" visibility="public" isStatic="true"/>
+        <Method name="getPuestos" returnType="LinkedList&lt;Puesto&gt;" visibility="public" isStatic="true"/>
+        <Method name="setPuestos" returnType="void" visibility="public" isStatic="true">
+          <Argument type="LinkedList&lt;Puesto&gt;" name="puestos"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Medico" package="modelo" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="especialidad" type="String" visibility="private"/>
+        <Field name="id" type="int" visibility="private" isStatic="true"/>
+        <Field name="idM" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombres"/>
+          <Argument type="String" name="apellidos"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="genero"/>
+          <Argument type="String" name="especialidad"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombres"/>
+          <Argument type="String" name="apellidos"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="genero"/>
+          <Argument type="String" name="especialidad"/>
+          <Argument type="int" name="idM"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombres"/>
+          <Argument type="String" name="apellidos"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="genero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public" isStatic="true"/>
+        <Method name="getEspecialidad" returnType="String" visibility="public"/>
+        <Method name="setEspecialidad" returnType="void" visibility="public">
+          <Argument type="String" name="especialidad"/>
+        </Method>
+        <Method name="getIdM" returnType="int" visibility="public"/>
+        <Method name="setIdM" returnType="void" visibility="public">
+          <Argument type="int" name="idM"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Paciente" package="modelo" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="sintoma" type="String" visibility="private"/>
+        <Field name="prioritySintoma" type="int" visibility="private"/>
+        <Field name="id" type="int" visibility="private" isStatic="true"/>
+        <Field name="idP" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombres"/>
+          <Argument type="String" name="apellidos"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="genero"/>
+          <Argument type="String" name="sintoma"/>
+          <Argument type="int" name="prioritySintoma"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombres"/>
+          <Argument type="String" name="apellidos"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="genero"/>
+          <Argument type="String" name="sintoma"/>
+          <Argument type="int" name="prioritySintoma"/>
+          <Argument type="int" name="idP"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getSintoma" returnType="String" visibility="public"/>
+        <Method name="setSintoma" returnType="void" visibility="public">
+          <Argument type="String" name="sintoma"/>
+        </Method>
+        <Method name="getPrioritySintoma" returnType="int" visibility="public"/>
+        <Method name="setPrioritySintoma" returnType="void" visibility="public">
+          <Argument type="int" name="prioritySintoma"/>
+        </Method>
+        <Method name="getIdP" returnType="int" visibility="public"/>
+        <Method name="setIdP" returnType="void" visibility="public">
+          <Argument type="int" name="idP"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Persona" package="modelo" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="nombres" type="String" visibility="private"/>
+        <Field name="apellidos" type="String" visibility="private"/>
+        <Field name="edad" type="int" visibility="private"/>
+        <Field name="genero" type="String" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="nombres"/>
+          <Argument type="String" name="apellidos"/>
+          <Argument type="int" name="edad"/>
+          <Argument type="String" name="genero"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombres" returnType="String" visibility="public"/>
+        <Method name="setNombres" returnType="void" visibility="public">
+          <Argument type="String" name="nombres"/>
+        </Method>
+        <Method name="getApellidos" returnType="String" visibility="public"/>
+        <Method name="setApellidos" returnType="void" visibility="public">
+          <Argument type="String" name="apellidos"/>
+        </Method>
+        <Method name="getEdad" returnType="int" visibility="public"/>
+        <Method name="setEdad" returnType="void" visibility="public">
+          <Argument type="int" name="edad"/>
+        </Method>
+        <Method name="getGenero" returnType="String" visibility="public"/>
+        <Method name="setGenero" returnType="void" visibility="public">
+          <Argument type="String" name="genero"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Puesto" package="modelo" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="idI" type="int" visibility="private" isStatic="true"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="doctor" type="Medico" visibility="private"/>
+        <Field name="estado" type="Boolean" visibility="private"/>
+        <Field name="paciente" type="Paciente" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Medico" name="doctor"/>
+          <Argument type="Boolean" name="estado"/>
+          <Argument type="Paciente" name="p"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="int" name="id"/>
+          <Argument type="Medico" name="doctor"/>
+          <Argument type="Boolean" name="estado"/>
+          <Argument type="Paciente" name="p"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getDoctor" returnType="Medico" visibility="public"/>
+        <Method name="setDoctor" returnType="void" visibility="public">
+          <Argument type="Medico" name="doctor"/>
+        </Method>
+        <Method name="getEstado" returnType="Boolean" visibility="public"/>
+        <Method name="setEstado" returnType="void" visibility="public">
+          <Argument type="Boolean" name="estado"/>
+        </Method>
+        <Method name="getIdI" returnType="int" visibility="public" isStatic="true"/>
+        <Method name="setIdI" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="idI"/>
+        </Method>
+        <Method name="getPaciente" returnType="Paciente" visibility="public"/>
+        <Method name="setPaciente" returnType="void" visibility="public">
+          <Argument type="Paciente" name="paciente"/>
+        </Method>
+        <Method name="hashCode" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Object" name="obj"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Sintoma" package="modelo" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="NombreSintoma" type="String" visibility="package"/>
+        <Field name="prioridad" type="int" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="NombreSintoma"/>
+          <Argument type="int" name="prioridad"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="toString" returnType="String" visibility="public"/>
+        <Method name="getNombreSintoma" returnType="String" visibility="public"/>
+        <Method name="setNombreSintoma" returnType="void" visibility="public">
+          <Argument type="String" name="NombreSintoma"/>
+        </Method>
+        <Method name="getPrioridad" returnType="int" visibility="public"/>
+        <Method name="setPrioridad" returnType="void" visibility="public">
+          <Argument type="int" name="prioridad"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Turno" package="modelo" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="aumentador" type="int" visibility="private" isStatic="true"/>
+        <Field name="id" type="int" visibility="private"/>
+        <Field name="puesto" type="Puesto" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Puesto" name="puesto"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getAumentador" returnType="int" visibility="public" isStatic="true"/>
+        <Method name="setAumentador" returnType="void" visibility="public" isStatic="true">
+          <Argument type="int" name="aumentador"/>
+        </Method>
+        <Method name="getId" returnType="int" visibility="public"/>
+        <Method name="setId" returnType="void" visibility="public">
+          <Argument type="int" name="id"/>
+        </Method>
+        <Method name="getPuesto" returnType="Puesto" visibility="public"/>
+        <Method name="setPuesto" returnType="void" visibility="public">
+          <Argument type="Puesto" name="puesto"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelAdministrar" package="pantallas" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="puestos" type="Button" visibility="private"/>
+        <Field name="doctores" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelAdministrarDoctores" package="pantallas" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="crearDoctor" type="Button" visibility="private"/>
+        <Field name="eliminarDoctor" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="lNombre" type="Label" visibility="private"/>
+        <Field name="lapellido" type="Label" visibility="private"/>
+        <Field name="lespecialidad" type="Label" visibility="private"/>
+        <Field name="ledad" type="Label" visibility="private"/>
+        <Field name="lgenero" type="Label" visibility="private"/>
+        <Field name="nombretxt" type="TextField" visibility="private"/>
+        <Field name="apellidotxt" type="TextField" visibility="private"/>
+        <Field name="especialidadtxt" type="TextField" visibility="private"/>
+        <Field name="edadtxt" type="TextField" visibility="private"/>
+        <Field name="generotxt" type="TextField" visibility="private"/>
+        <Field name="tbldoctores" type="TableView&lt;Medico&gt;" visibility="private"/>
+        <Field name="colNombre" type="TableColumn" visibility="private"/>
+        <Field name="colApellidos" type="TableColumn" visibility="private"/>
+        <Field name="colEspecialidad" type="TableColumn" visibility="private"/>
+        <Field name="colEdad" type="TableColumn" visibility="private"/>
+        <Field name="colGenero" type="TableColumn" visibility="private"/>
+        <Field name="colId" type="TableColumn" visibility="private"/>
+        <Field name="doctores" type="ObservableList&lt;Medico&gt;" visibility="private"/>
+        <Field name="botones" type="HBox" visibility="private"/>
+        <Field name="crud" type="HBox" visibility="private"/>
+        <Field name="labels" type="VBox" visibility="private"/>
+        <Field name="ingresos" type="VBox" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="cargarTabla" returnType="void" visibility="private"/>
+        <Method name="agregarMedico" returnType="void" visibility="private"/>
+        <Method name="eliminarMedico" returnType="void" visibility="private"/>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelAdministrarPuestos" package="pantallas" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="crearPuesto" type="Button" visibility="private"/>
+        <Field name="eliminarPuesto" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="asignar" type="Button" visibility="private"/>
+        <Field name="lDisponible" type="Label" visibility="private"/>
+        <Field name="cb" type="ComboBox&lt;Medico&gt;" visibility="private"/>
+        <Field name="tblpuestos" type="TableView&lt;Puesto&gt;" visibility="private"/>
+        <Field name="colIDM" type="TableColumn" visibility="private"/>
+        <Field name="colIDP" type="TableColumn" visibility="private"/>
+        <Field name="colEstado" type="TableColumn" visibility="private"/>
+        <Field name="puestos" type="ObservableList&lt;Puesto&gt;" visibility="private"/>
+        <Field name="botones" type="HBox" visibility="private"/>
+        <Field name="crud" type="HBox" visibility="private"/>
+        <Field name="labels" type="VBox" visibility="private"/>
+        <Field name="ingresos" type="VBox" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="agregarPuesto" returnType="void" visibility="private"/>
+        <Method name="llenar_pantalla" returnType="void" visibility="private">
+          <Argument type="VBox" name="turnos_puestos"/>
+          <Argument type="LinkedList&lt;Turno&gt;" name="turnos"/>
+        </Method>
+        <Method name="mostrar_puestos" returnType="void" visibility="private">
+          <Argument type="Puesto" name="p"/>
+        </Method>
+        <Method name="asignarPuesto" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="actualizarPantalla" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="eliminarPuesto" returnType="void" visibility="private"/>
+        <Method name="obtener_indice" returnType="int" visibility="private">
+          <Argument type="LinkedList&lt;Turno&gt;" name="turnos"/>
+          <Argument type="Puesto" name="p"/>
+        </Method>
+        <Method name="eliminarpuestos_pantalla" returnType="void" visibility="private">
+          <Argument type="Puesto" name="p"/>
+        </Method>
+        <Method name="cargarTabla" returnType="void" visibility="private"/>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelAtencion" package="pantallas" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="atenderPaciente" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="lPuesto" type="Label" visibility="private"/>
+        <Field name="lPuestoResult" type="Label" visibility="private"/>
+        <Field name="lDoctor" type="Label" visibility="private"/>
+        <Field name="lDoctorResult" type="Label" visibility="private"/>
+        <Field name="lPaciente" type="Label" visibility="private"/>
+        <Field name="lPacienteResult" type="Label" visibility="private"/>
+        <Field name="lSintoma" type="Label" visibility="private"/>
+        <Field name="lSintomaResult" type="Label" visibility="private"/>
+        <Field name="lDiagostico" type="Label" visibility="private"/>
+        <Field name="lRecete" type="Label" visibility="private"/>
+        <Field name="diagnositotxt" type="TextField" visibility="private"/>
+        <Field name="recetatxt" type="TextField" visibility="private"/>
+        <Field name="botones" type="HBox" visibility="private"/>
+        <Field name="crud" type="HBox" visibility="private"/>
+        <Field name="labels" type="VBox" visibility="private"/>
+        <Field name="ingresos" type="VBox" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="FianlizarAtencion" returnType="void" visibility="private"/>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelAtenderPaciente" package="pantallas" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="atencionPuestos" type="Button" visibility="private"/>
+        <Field name="siguienteTurno" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="puestoEscogido" type="int" visibility="protected" isStatic="true"/>
+        <Field name="tblpuestos" type="TableView&lt;Puesto&gt;" visibility="private"/>
+        <Field name="colIDM" type="TableColumn" visibility="private"/>
+        <Field name="colIDP" type="TableColumn" visibility="private"/>
+        <Field name="colIdPaciente" type="TableColumn" visibility="private"/>
+        <Field name="puestos" type="ObservableList&lt;Puesto&gt;" visibility="private"/>
+        <Field name="botones" type="HBox" visibility="private"/>
+        <Field name="crud" type="HBox" visibility="private"/>
+        <Field name="labels" type="VBox" visibility="private"/>
+        <Field name="ingresos" type="VBox" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="cargarTabla" returnType="void" visibility="private"/>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="guardarSelecion" returnType="void" visibility="private"/>
+        <Method name="siguienteTurno" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelCrearPaciente" package="pantallas" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="crearPaciente" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="lNombre" type="Label" visibility="private"/>
+        <Field name="lApellido" type="Label" visibility="private"/>
+        <Field name="lSintoma" type="Label" visibility="private"/>
+        <Field name="lEdad" type="Label" visibility="private"/>
+        <Field name="lGenero" type="Label" visibility="private"/>
+        <Field name="lIdPaciente" type="Label" visibility="private"/>
+        <Field name="nombretxt" type="TextField" visibility="private"/>
+        <Field name="apellidotxt" type="TextField" visibility="private"/>
+        <Field name="sintomatxt" type="TextField" visibility="private"/>
+        <Field name="edadtxt" type="TextField" visibility="private"/>
+        <Field name="generotxt" type="TextField" visibility="private"/>
+        <Field name="idPacientetxt" type="TextField" visibility="private"/>
+        <Field name="botones" type="HBox" visibility="private"/>
+        <Field name="crud" type="HBox" visibility="private"/>
+        <Field name="labels" type="VBox" visibility="private"/>
+        <Field name="ingresos" type="VBox" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="agregarPaciente" returnType="void" visibility="private"/>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="vaciarText" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelPaciente" package="pantallas" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="atenderPaciente" type="Button" visibility="private"/>
+        <Field name="crearPaciente" type="Button" visibility="private"/>
+        <Field name="atras" type="Button" visibility="private"/>
+        <Field name="label" type="Label" visibility="private"/>
+        <Field name="panel" type="VBox" visibility="private"/>
+        <Field name="root" type="Pane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="iniciar" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="formato" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+        <Method name="getRoot" returnType="Pane" visibility="public"/>
+        <Method name="setRoot" returnType="void" visibility="public">
+          <Argument type="Pane" name="nuevoRoot"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelPrincipal" package="pantallas" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="l" type="CircularDoublyLinkedList&lt;String&gt;" visibility="private"/>
+        <Field name="turnos" type="LinkedList&lt;Turno&gt;" visibility="public" isStatic="true"/>
+        <Field name="mv" type="MediaView" visibility="private"/>
+        <Field name="NewScene" type="Scene" visibility="private"/>
+        <Field name="video_puestos" type="HBox" visibility="private"/>
+        <Field name="turnos_puestos" type="VBox" visibility="public" isStatic="true"/>
+        <Field name="root" type="HBox" visibility="private"/>
+        <Field name="turno" type="Label" visibility="private"/>
+        <Field name="puesto" type="Label" visibility="private"/>
+        <Field name="mediaPlayer" type="MediaPlayer" visibility="package"/>
+        <Field name="panel" type="Pane" visibility="package"/>
+        <Field name="caja" type="VBox" visibility="package"/>
+        <Field name="titulo" type="Label" visibility="package"/>
+        <Field name="administrar" type="Button" visibility="package"/>
+        <Field name="atender_puestos" type="Button" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getNewScene" returnType="Scene" visibility="public"/>
+        <Method name="llenar_turnos" returnType="void" visibility="private"/>
+        <Method name="llenar_pantallar" returnType="void" visibility="private"/>
+        <Method name="cambiar_labelprimervbox" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Label" name="label"/>
+        </Method>
+        <Method name="cambiar_labelsegundovbox" returnType="void" visibility="public" isStatic="true">
+          <Argument type="Label" name="label"/>
+        </Method>
+        <Method name="iniciar" returnType="void" visibility="private"/>
+        <Method name="estilo" returnType="void" visibility="private"/>
+        <Method name="setearAcciones" returnType="void" visibility="private"/>
+        <Method name="reproducirListaVideos" returnType="void" visibility="private"/>
+      </Methods>
+    </Class>
+    <Class name="SistemaDeTurnos" package="sistemadeturnos" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+        <Method name="start" returnType="void" visibility="public">
+          <Argument type="Stage" name="stage"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="CircularDoublyLinkedList" package="tda" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="last" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="current" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="getprimero" returnType="Node&lt;E&gt;" visibility="public"/>
+        <Method name="addFirst" returnType="boolean" visibility="public">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="addLast" returnType="boolean" visibility="public">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="getFirst" returnType="E" visibility="public"/>
+        <Method name="getLast" returnType="E" visibility="public"/>
+        <Method name="indexOf" returnType="int" visibility="public">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="size" returnType="int" visibility="public"/>
+        <Method name="removeLast" returnType="boolean" visibility="public"/>
+        <Method name="removeFirst" returnType="boolean" visibility="public"/>
+        <Method name="insert" returnType="boolean" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="getNode" returnType="Node&lt;E&gt;" visibility="private">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="set" returnType="boolean" visibility="public">
+          <Argument type="int" name="index"/>
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="public"/>
+        <Method name="get" returnType="E" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="remove" returnType="boolean" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="iterator" returnType="Iterator&lt;E&gt;" visibility="public"/>
+        <Method name="searchNode" returnType="Node&lt;E&gt;" visibility="private">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="listIterator" returnType="ListIterator&lt;E&gt;" visibility="public"/>
+        <Method name="listIterator" returnType="ListIterator&lt;E&gt;" visibility="public">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Interface name="List" package="tda" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Methods>
+        <Method name="addFirst" returnType="boolean" visibility="package">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="addLast" returnType="boolean" visibility="package">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="getFirst" returnType="E" visibility="package"/>
+        <Method name="getLast" returnType="E" visibility="package"/>
+        <Method name="indexOf" returnType="int" visibility="package">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="size" returnType="int" visibility="package"/>
+        <Method name="removeLast" returnType="boolean" visibility="package"/>
+        <Method name="removeFirst" returnType="boolean" visibility="package"/>
+        <Method name="insert" returnType="boolean" visibility="package">
+          <Argument type="int" name="index"/>
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="set" returnType="boolean" visibility="package">
+          <Argument type="int" name="index"/>
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="isEmpty" returnType="boolean" visibility="package"/>
+        <Method name="get" returnType="E" visibility="package">
+          <Argument type="int" name="index"/>
+        </Method>
+        <Method name="contains" returnType="boolean" visibility="package">
+          <Argument type="E" name="e"/>
+        </Method>
+        <Method name="remove" returnType="boolean" visibility="package">
+          <Argument type="int" name="index"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="Node" package="tda" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="data" type="E" visibility="private"/>
+        <Field name="next" type="Node&lt;E&gt;" visibility="private"/>
+        <Field name="previous" type="Node&lt;E&gt;" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="E" name="data"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getData" returnType="E" visibility="public"/>
+        <Method name="setData" returnType="void" visibility="public">
+          <Argument type="E" name="data"/>
+        </Method>
+        <Method name="getNext" returnType="Node&lt;E&gt;" visibility="public"/>
+        <Method name="setNext" returnType="void" visibility="public">
+          <Argument type="Node&lt;E&gt;" name="next"/>
+        </Method>
+        <Method name="getPrevious" returnType="Node&lt;E&gt;" visibility="public"/>
+        <Method name="setPrevious" returnType="void" visibility="public">
+          <Argument type="Node&lt;E&gt;" name="previous"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="paciente" source="modelo.Puesto" target="modelo.Paciente" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="modelo.Turno" target="modelo.Puesto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="puestos" source="controlador.Controlador" target="modelo.Puesto" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Puesto&gt;"/>
+    <HasRelation name="tbldoctores" source="pantallas.PanelAdministrarDoctores" target="modelo.Medico" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="sintomas" source="controlador.Controlador" target="modelo.Sintoma" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Sintoma&gt;"/>
+    <HasRelation name="pacientes" source="controlador.Controlador" target="modelo.Paciente" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="PriorityQueue&lt;Paciente&gt;"/>
+    <HasRelation name="tblpuestos" source="pantallas.PanelAtenderPaciente" target="modelo.Puesto" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="controlador.Controlador" target="modelo.Medico" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cb" source="pantallas.PanelAdministrarPuestos" target="modelo.Medico" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="modelo.Medico" target="modelo.Persona"/>
+    <UseRelation source="tda.CircularDoublyLinkedList" target="tda.Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="modelo.Puesto" target="modelo.Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="controlador.Controlador" target="modelo.Paciente" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tda.CircularDoublyLinkedList" target="tda.List" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="turnos" source="pantallas.PanelPrincipal" target="modelo.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Turno&gt;"/>
+    <UseRelation source="pantallas.PanelAdministrarPuestos" target="tda.List" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="pantallas.PanelAdministrarPuestos" target="modelo.Puesto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="tblpuestos" source="pantallas.PanelAdministrarPuestos" target="modelo.Puesto" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="doctores" source="pantallas.PanelAdministrarDoctores" target="modelo.Medico" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ObservableList&lt;Medico&gt;"/>
+    <HasRelation name="doctor" source="modelo.Puesto" target="modelo.Medico" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="tda.Node" target="tda.Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="controlador.Controlador" target="tda.List" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="puesto" source="modelo.Turno" target="modelo.Puesto" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="pacienteslista" source="controlador.Controlador" target="modelo.Paciente" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Paciente&gt;"/>
+    <HasRelation name="puestos" source="pantallas.PanelAtenderPaciente" target="modelo.Puesto" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ObservableList&lt;Puesto&gt;"/>
+    <UseRelation source="controlador.Controlador" target="modelo.Puesto" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="modelo.Paciente" target="modelo.Persona"/>
+    <UseRelation source="modelo.Puesto" target="modelo.Medico" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="tda.CircularDoublyLinkedList" target="tda.List"/>
+    <HasRelation name="puestos" source="pantallas.PanelAdministrarPuestos" target="modelo.Puesto" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ObservableList&lt;Puesto&gt;"/>
+    <HasRelation name="doctores" source="controlador.Controlador" target="modelo.Medico" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="LinkedList&lt;Medico&gt;"/>
+  </ClassDiagramRelations>
+</ClassDiagram>

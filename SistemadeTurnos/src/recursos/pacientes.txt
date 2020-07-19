@@ -1,7 +1,3 @@
 Abraham,Aguilar,30,M,problemas respiratorios,1
 Keyco,Chang,43,F,congestion nasal,2
 Susan,Montenegro,23,F,vomito,3
-Mathias,Ruiz,10,M,fiebre,4
-Xavier,Solis,23,M,taquicardia,5
-Rogwi,Cajas,M,22,vomito,6
-Pepe,Perez,F,23,fiebre,6

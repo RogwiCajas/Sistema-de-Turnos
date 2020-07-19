@@ -190,19 +190,10 @@ public class Controlador {
      
      //agreg los pacientes en el documento y en la cola y en la lista
     public static boolean agregarPaciente(String nombre, String apellido, String genero, int edad, String sintoma){
-        try {
-            //creamos primero el objeto para general la istnacia y el ID
-            Paciente p;
-            p=new Paciente(nombre, apellido, edad, genero,sintoma,asignaPrioridad(sintoma));
-            pacientes.add(p);
-            FileWriter fstream = new FileWriter("src/recursos/pacientes.txt", true);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.write("\n"+nombre+","+apellido+","+genero+","+edad+","+sintoma+","+  p.getIdP());
-            out.close();
-            
-        } catch (IOException ex) {
-            System.out.println("Error: "+ex.getMessage());
-        }
+         Paciente p;
+         p=new Paciente(nombre, apellido, edad, genero,sintoma,asignaPrioridad(sintoma));
+         pacientes.add(p);
+         pacienteslista.add(p);
         return true;
     }
     
