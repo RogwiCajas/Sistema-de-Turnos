@@ -6,13 +6,13 @@ Proyecto correspondiente al primer parcial de la materia "Estructura de Datos", 
 busca simular la atencion a pacientes dentro de un hospital en base a la prioridad 
 de los sintomas del paciente.
 ## **Diagrama: **
-![Diagrama de Clases del Programa](Diagrama de Clases.png)
+![Diagrama de Clases del Programa](/DiagramadeClases.png)
 ## **Autores:**
-_Isaac_Solis
-_Alejandra_Quimi
-_Rogwi_Cajas
+_Isaac Solis_
+_Alejandra Quimi_
+_Rogwi Cajas_
 
 ## **Información:**
 
 - El proyecto se desarrolla enteramente en JAVA (Open jdk 11 y Open java fx 11).
-- Puede encontrar descripcion del funcionamiento del programa aqui[Reporte](Reporte-proyectoEstructurasP1.pdf)
+- Puede encontrar descripcion del funcionamiento del programa [aqui](Reporte-proyectoEstructurasP1.pdf)
