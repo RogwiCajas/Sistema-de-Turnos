@@ -5,12 +5,12 @@
 Proyecto correspondiente al primer parcial de la materia "Estructura de Datos", el proyecto
 busca simular la atencion a pacientes dentro de un hospital en base a la prioridad 
 de los sintomas del paciente.
-## **Diagrama: **
+## **Diagrama:**
 ![Diagrama de Clases del Programa](/DiagramadeClases.png)
 ## **Autores:**
-_Isaac Solis_
-_Alejandra Quimi_
-_Rogwi Cajas_
+- _Isaac Solis_
+- _Alejandra Quimi_
+- _Rogwi Cajas_
 
 ## **Información:**
 
