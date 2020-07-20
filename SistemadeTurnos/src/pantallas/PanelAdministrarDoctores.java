@@ -17,6 +17,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -28,6 +29,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import modelo.Medico;
+import modelo.Genero;
 
 
 /**
@@ -51,7 +53,7 @@ public class PanelAdministrarDoctores extends Pane{
     private TextField apellidotxt;
     private TextField especialidadtxt;
     private TextField edadtxt;
-    private TextField generotxt;
+    private ComboBox generotxt;
     //Tabla para mostrar Doctores
     private TableView<Medico> tbldoctores;
     private TableColumn colNombre;
@@ -96,7 +98,9 @@ public class PanelAdministrarDoctores extends Pane{
         this.apellidotxt=new TextField();
         this.especialidadtxt=new TextField();
         this.edadtxt=new TextField();
-        this.generotxt=new TextField();
+        
+        this.generotxt=new ComboBox<>();
+        generotxt.setItems(FXCollections.observableArrayList(Genero.values()));
         //Cargar tabla y sus columnas
         cargarTabla();
         
@@ -144,6 +148,14 @@ public class PanelAdministrarDoctores extends Pane{
         this.tbldoctores.setItems(doctores);
         
     }
+    private void vaciarText(){
+        nombretxt.setText(null);
+        apellidotxt.setText(null);
+        edadtxt.setText(null);
+        especialidadtxt.setText(null);
+        //generotxt.setText(null);
+        
+    }
     private void agregarMedico(){//Validar entradas segun tipo
 
         try {
@@ -151,7 +163,7 @@ public class PanelAdministrarDoctores extends Pane{
             String nombre=this.nombretxt.getText();
             String apellidos=this.apellidotxt.getText();
             int edad=Integer.parseInt(this.edadtxt.getText());
-            String genero=this.generotxt.getText();
+            String genero=this.generotxt.getValue().toString();
             String especialidad=this.especialidadtxt.getText();
             
             Medico m;
@@ -166,7 +178,7 @@ public class PanelAdministrarDoctores extends Pane{
                 Controlador.crearAlerta("ERROR", "El medico ya existe!");
             }
             
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             Controlador.crearAlerta("EROR","Formato Incorrecto!");
         }
         
@@ -198,6 +210,7 @@ public class PanelAdministrarDoctores extends Pane{
     }
     
     private void formato(){
+        
         //formato y alineacion del panel principal
         panel.setPadding(new Insets(150,70,70,100));
         panel.setAlignment(Pos.CENTER);
@@ -223,6 +236,9 @@ public class PanelAdministrarDoctores extends Pane{
         eliminarDoctor.setAlignment(Pos.CENTER);
         atras.setAlignment(Pos.CENTER);
         
+        //generocb
+        
+        
     }
     private  void setearAcciones(Stage stage){
         crearDoctor.setOnAction( new EventHandler<ActionEvent>() {
@@ -230,6 +246,7 @@ public class PanelAdministrarDoctores extends Pane{
 			public void handle(ActionEvent t) {
                             
                             agregarMedico();
+                            vaciarText();
 			}
 	});
         eliminarDoctor.setOnAction( new EventHandler<ActionEvent>() {

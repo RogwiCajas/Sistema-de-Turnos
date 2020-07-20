@@ -6,3 +6,4 @@
  Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Keyco Chang, Sintoma: 4, Diagnostico: gripe comun, Receta: lemonflu
  Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Susan Montenegro, Sintoma: 4, Diagnostico: l, Receta: l
  Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Susan Montenegro, Sintoma: 4, Diagnostico: embaazo, Receta: acido folico
+ Puesto de Atencion3, Medico; Eduardo Cruz, Paciente: Susan Montenegro, Sintoma: 3, Diagnostico: asda, Receta: asdasd

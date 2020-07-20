@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,6 +27,8 @@ import javafx.stage.Stage;
 import modelo.Medico;
 import modelo.Paciente;
 import modelo.Puesto;
+import modelo.Genero;
+import modelo.Sintoma;
 
 
 /**
@@ -49,9 +52,9 @@ public class PanelCrearPaciente extends Pane{
     //areas de texto
     private TextField nombretxt;
     private TextField apellidotxt;
-    private TextField sintomatxt;
+    private ComboBox<Sintoma> sintomatxt;
     private TextField edadtxt;
-    private TextField generotxt;
+    private ComboBox generotxt;
      private TextField idPacientetxt;
 
 
@@ -89,9 +92,12 @@ public class PanelCrearPaciente extends Pane{
         
         this.nombretxt=new TextField();
         this.apellidotxt=new TextField();
-        this.sintomatxt=new TextField();
+        this.sintomatxt=new ComboBox<>();
+        sintomatxt.setItems(FXCollections.observableList(Controlador.getSintomas()));
+        
         this.edadtxt=new TextField();
-        this.generotxt=new TextField();
+        this.generotxt=new ComboBox<>();
+        generotxt.setItems(FXCollections.observableArrayList(Genero.values()));
         this.idPacientetxt = new  TextField();
          
         //formatos de los nodos
@@ -121,8 +127,8 @@ public class PanelCrearPaciente extends Pane{
             String nombre=this.nombretxt.getText();
             String apellidos=this.apellidotxt.getText();
             int edad=Integer.parseInt(this.edadtxt.getText());
-            String genero=this.generotxt.getText();
-            String sintoma=this.sintomatxt.getText();
+            String genero=this.generotxt.getValue().toString();
+            String sintoma=this.sintomatxt.getValue().toString2();
 
             controlador.Controlador.agregarPaciente(nombre, apellidos, genero, edad, sintoma);
             Paciente p= getPacientes().peek();
@@ -132,7 +138,7 @@ public class PanelCrearPaciente extends Pane{
                 Controlador.crearAlerta("ERROR", "No se creo el paceinte");
             }
             
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | NullPointerException e) {
             Controlador.crearAlerta("EROR","Formato Incorrecto!");
         }
         
@@ -170,9 +176,9 @@ public class PanelCrearPaciente extends Pane{
         nombretxt.setText(null);
         apellidotxt.setText(null);
         edadtxt.setText(null);
-        sintomatxt.setText(null);
-        generotxt.setText(null);
-        
+        //sintomatxt.setText(null);
+        //generotxt.setText(null);
+        idPacientetxt.setText(null);
     }
     
     private  void setearAcciones(Stage stage){

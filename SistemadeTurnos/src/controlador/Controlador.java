@@ -403,6 +403,22 @@ public class Controlador {
     public static void setPuestos(LinkedList<Puesto> puestos) {
         Controlador.puestos = puestos;
     }
+
+    public static LinkedList<Paciente> getPacienteslista() {
+        return pacienteslista;
+    }
+
+    public static void setPacienteslista(LinkedList<Paciente> pacienteslista) {
+        Controlador.pacienteslista = pacienteslista;
+    }
+
+    public static LinkedList<Sintoma> getSintomas() {
+        return sintomas;
+    }
+
+    public static void setSintomas(LinkedList<Sintoma> sintomas) {
+        Controlador.sintomas = sintomas;
+    }
     
     
 }

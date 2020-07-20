@@ -17,6 +17,9 @@ public class Sintoma {
     public String toString() {
         return "Sintoma{" + "NombreSintoma=" + NombreSintoma + ", prioridad=" + prioridad + '}';
     }
+    public String toString2() {
+        return NombreSintoma ;
+    }
 
     public Sintoma(String NombreSintoma, int prioridad) {
         this.NombreSintoma = NombreSintoma;
