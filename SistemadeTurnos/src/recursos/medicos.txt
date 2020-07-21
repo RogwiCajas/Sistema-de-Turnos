@@ -1,4 +1,0 @@
-Isaac,Solis,30,M,General,1
-Rogwi,Caja,32,M,General,2
-Eduardo,Cruz,38,M,Pediatria,3
-Carla,Cevallos,29,F,Cardiologia,4

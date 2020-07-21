@@ -133,7 +133,8 @@ public class PanelAtencion extends Pane{
             } else{
                Controlador.crearNotificacion("Confirmacion", "Paciente Atendido Correctamente");
                Controlador.agregarHistorial(Integer.parseInt(puesto),doctor,paciente,sintoma,diagnostico,receta);
-               Controlador.eliminarAsignacionPuestoPaciente(puestoEscogido); //elimino al paciete del puesto                
+               Controlador.eliminarAsignacionPuestoPaciente(puestoEscogido); //elimino al paciete del puesto 
+               Controlador.mostrar_puestos2();
              }
             
         } catch (NumberFormatException e) {

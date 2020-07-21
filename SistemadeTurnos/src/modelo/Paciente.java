@@ -66,7 +66,13 @@ public class Paciente extends Persona{
         }
         return "Paciente{" +  "nombre="+this.getNombres()+" "+this.getApellidos()+  "sintoma=" + sintoma + ", Priodifad" + prioritySintoma + ", idP=" + idP + '}';
     }
-
+    
+    public String toString2() {
+        if(this.getIdP()==0){
+            return "Paciente no Asignado";
+        }
+        return "P-" + this.getNombres().substring(0, 1)+this.getApellidos().substring(0,1)+ sintoma.substring(0, 1) + idP;
+    }
     
     
     

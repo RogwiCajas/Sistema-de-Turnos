@@ -85,7 +85,7 @@ public class PanelPrincipal {
    
         
     }
-    private void llenar_turnos(){
+    private void llenar_turnos(){//Nota usar iteraotor
         
         LinkedList<Puesto> puesto=Controlador.getPuestos();
         for(int i=0;i<puesto.size();i++){
@@ -111,7 +111,8 @@ public class PanelPrincipal {
         for(int i=0;i<turnos.size();i++){
 
             HBox ho=new HBox(5);
-            Label label=new Label("A"+String.valueOf(turnos.get(i).getId()));
+            //Label label=new Label(String.valueOf(turnos.get(i).getPuesto().getPaciente().toString()));
+            Label label=new Label(String.valueOf(turnos.get(i).getPuesto().getPaciente().toString2()));
             cambiar_labelprimervbox(label);
             
             Label label2 = new Label(String.valueOf(turnos.get(i).getPuesto().getId()));
@@ -136,7 +137,7 @@ public class PanelPrincipal {
     public static void cambiar_labelsegundovbox(Label label){
          label.setFont(label.getFont().font(21));
         label.setAlignment(Pos.CENTER);
-        label.setStyle("-fx-background-color: brown;");
+        label.setStyle("-fx-background-color: red;");
         label.setMinSize(120,50);
        
     }
@@ -240,6 +241,7 @@ public class PanelPrincipal {
                       
                     }
                 } catch (InterruptedException ex) {
+                    //Controlador.crearNotificacion("Cerrar", "Usted esta saliendo!");
                 }
             }
         };

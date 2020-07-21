@@ -161,6 +161,8 @@ public class PanelAtenderPaciente extends Pane{
               Controlador.crearNotificacion("Siguiente Turno", "Paciente ha sido enviado a un puesto");
               p.setPaciente(getPacientes().poll()); //asigno paciente a puesyo
               p.setEstado(Boolean.TRUE);    //le cambio estado
+              //actualizo el turno
+              Controlador.mostrar_puestos2();
           }else{
               Controlador.crearAlerta("ERROR", "Puesto no valido para enviar al puesto");
             }
@@ -180,7 +182,9 @@ public class PanelAtenderPaciente extends Pane{
         siguienteTurno.setOnAction( new EventHandler<ActionEvent>() {
                         @Override
 			public void handle(ActionEvent t) {
-                            siguienteTurno();                          
+                            siguienteTurno();
+                            //actualizo
+                            
                             Scene escena= new Scene(new PanelAtenderPaciente(stage).getRoot(),700,700);
                             stage.setScene(escena);
                             stage.show();

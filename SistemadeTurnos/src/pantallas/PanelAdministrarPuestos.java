@@ -120,7 +120,7 @@ public class PanelAdministrarPuestos extends Pane{
                 }
                 this.puestos.add(p);
                 this.tblpuestos.setItems(puestos);
-                mostrar_puestos( p);
+                Controlador.mostrar_puestos( p);
                 //Escribir puesto en puestos.txt
                 Controlador.crearNotificacion("Confirmacion", "Puesto Creado Correctamente!");
                 
@@ -134,58 +134,7 @@ public class PanelAdministrarPuestos extends Pane{
         //Medico m=new Medico(nombre, apellidos, edad, genero,especialidad);
         
     }
-    /**
-     * Funcion que se encarga de llenar los turnos y puestos en la pantalla principal. 
-     * @param turnos_puestos
-     * @param turnos
-     */
-   
-     private void llenar_pantalla(VBox turnos_puestos,LinkedList<Turno>turnos){
-        
-        Label turno=new Label("TURNO");
-        PanelPrincipal.cambiar_labelprimervbox(turno);
-        Label puesto=new Label("PUESTO");
-        PanelPrincipal.cambiar_labelsegundovbox(puesto);
-        HBox s=new HBox(5);
-        
-        s.getChildren().addAll(turno,puesto);
-       
-        turnos_puestos.getChildren().add(s);
-        
-       
-        for(int i=0;i<turnos.size();i++){
-            HBox ho=new HBox(5);
-            Label label3=new Label("A"+String.valueOf(turnos.get(i).getId()));
-            PanelPrincipal.cambiar_labelprimervbox(label3);
-            
-            Label label2 = new Label(String.valueOf(turnos.get(i).getPuesto().getId()));
-            PanelPrincipal.cambiar_labelsegundovbox(label2);
-            ho.getChildren().addAll(label3,label2);
-            turnos_puestos.getChildren().add(ho);
-            
-        }
-        
-        
-        
-    }
-     
-     
-     /**
-     * Funcion que se encarga de llamar a la lista de turnos y al Vbox.Llama a la funcion llenar_pantalla 
-     * @param p
-     */
-    private void mostrar_puestos(Puesto p){
-                VBox V=PanelPrincipal.turnos_puestos;
-                V.getChildren().clear();
-                LinkedList<Turno> turnos=PanelPrincipal.turnos;
-                turnos.add(new Turno(p));
-                
-                
-               
-                llenar_pantalla(V,turnos );
-        
-    }
-
+    
     
     private void asignarPuesto(Stage stage){
         try {
@@ -259,7 +208,7 @@ public class PanelAdministrarPuestos extends Pane{
                 this.tblpuestos.setItems(puestos);
                 //agregar alerta exitosa
                 //aqui deberia actualizar los puestos
-                eliminarpuestos_pantalla(p);
+                Controlador.eliminarpuestos_pantalla(p);
                 Controlador.crearNotificacion("Confirmacion", "Medico Eliminado Correctamente");
                 
             }else{//si no esta vacio, pide que porfavor elimines
@@ -272,38 +221,7 @@ public class PanelAdministrarPuestos extends Pane{
         
     }
     
-    /**
-     * Funcion que se encarga de obtener el indice donde se encuentra el puesto  
-     * @param turnos
-     * @param p
-     */
-    private int obtener_indice(LinkedList<Turno> turnos,Puesto p){
-        for(int i=0;i<turnos.size();i++){
-            Turno t=turnos.get(i);
-            if((p.getId())==t.getPuesto().getId()){
-                return i;
-            } 
-            
-        }
-        return -1;
-    }
-    /**
-     * Funcion que se encarga de eliminar el turno y el puesto de la pantalla principal.  
-     * @param p
-     */
-    private void eliminarpuestos_pantalla(Puesto p){
-                VBox V=PanelPrincipal.turnos_puestos;
-                V.getChildren().clear();
-                LinkedList<Turno> turnos=PanelPrincipal.turnos;
-                int indice=obtener_indice(turnos,p);
-                if(indice>=0){
-                turnos.remove(indice);
-                }
-                llenar_pantalla(V,turnos );
-        
-    }
-    
-    
+      
     private void cargarTabla(){
         
         this.puestos=FXCollections.observableList(Controlador.getPuestos());//setea medicos en la tabla

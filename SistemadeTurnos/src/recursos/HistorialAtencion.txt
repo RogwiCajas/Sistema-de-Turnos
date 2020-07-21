@@ -7,3 +7,16 @@
  Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Susan Montenegro, Sintoma: 4, Diagnostico: l, Receta: l
  Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Susan Montenegro, Sintoma: 4, Diagnostico: embaazo, Receta: acido folico
  Puesto de Atencion3, Medico; Eduardo Cruz, Paciente: Susan Montenegro, Sintoma: 3, Diagnostico: asda, Receta: asdasd
+ Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Keyco Chang, Sintoma: 4, Diagnostico: Alergia, Receta: paracetamol
+ Puesto de Atencion4, Medico; Carla Cevallos, Paciente: Juan Coronel, Sintoma: 4, Diagnostico: Corte del femur, Receta: Cirugia
+ Puesto de Atencion1, Medico; Rogwi Cajas, Paciente: Genesis Rivera, Sintoma: 1, Diagnostico: Corte del femur, Receta: Cirugia
+ Puesto de Atencion1, Medico; Rogwi Cajas, Paciente: Isaac  Solis, Sintoma: 1, Diagnostico: adasd, Receta: asd
+ Puesto de Atencion1, Medico; asdasd asdasd, Paciente: isaac solis, Sintoma: 1, Diagnostico: adsa, Receta: dasd
+ Puesto de Atencion1, Medico; rogwi cajas, Paciente: bbbb cccc, Sintoma: 1, Diagnostico: dasd, Receta: adad
+ Puesto de Atencion2, Medico; isaac solis, Paciente: asda aaaa, Sintoma: 2, Diagnostico: ssdasada, Receta: asdasd
+ Puesto de Atencion1, Medico; aaa aaa, Paciente: rogwi cajas, Sintoma: 1, Diagnostico: aa, Receta: aa
+ Puesto de Atencion1, Medico; aaa aaa, Paciente: eee eee, Sintoma: 1, Diagnostico: gggg, Receta: ggg
+ Puesto de Atencion1, Medico; aaa aaa, Paciente: ddd ddd, Sintoma: 1, Diagnostico: se murio, Receta: funeral
+ Puesto de Atencion2, Medico; aa aa, Paciente: dddd dddd, Sintoma: 2, Diagnostico: envenemamiento, Receta: f
+ Puesto de Atencion1, Medico; bb bb, Paciente: ccc cc, Sintoma: 1, Diagnostico: asd, Receta: asdasd
+ Puesto de Atencion2, Medico; aa aa, Paciente: fff fff, Sintoma: 2, Diagnostico: asdasd, Receta: asdasd

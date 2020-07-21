@@ -14,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.Medico;
 import pantallas.PanelAdministrar;
 import pantallas.PanelPaciente;
@@ -39,7 +40,7 @@ public class SistemaDeTurnos extends Application{
         Controlador.iniciarSistema();                
         stage.setTitle("Reproductor de video Java FX - Lista Circular");
         stage.setScene(new PanelPrincipal().getNewScene());
-        
+        //stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
     /*

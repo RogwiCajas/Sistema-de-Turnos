@@ -1,4 +1,0 @@
-Abraham,Aguilar,30,M,problemas respiratorios,1
-Keyco,Chang,43,F,congestion nasal,2
-Susan,Montenegro,23,F,vomito,3
-Ernesto,Chamba,22,M,vomito,4

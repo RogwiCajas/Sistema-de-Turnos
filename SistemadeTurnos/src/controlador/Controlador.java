@@ -10,6 +10,9 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -17,6 +20,8 @@ import modelo.Medico;
 import modelo.Paciente;
 import modelo.Puesto;
 import modelo.Sintoma;
+import modelo.Turno;
+import pantallas.PanelPrincipal;
 import tda.CircularDoublyLinkedList;
 import tda.Node;
 
@@ -45,7 +50,7 @@ public class Controlador {
         cargarPuestos();
      }
    
-    
+    //DSFIEC20*
     
     //metodos para cargar los arreglos
     
@@ -420,5 +425,99 @@ public class Controlador {
         Controlador.sintomas = sintomas;
     }
     
-    
+    ////metodos para actualizar los puestos de la principal
+    /**
+     * Funcion que se encarga de llenar los turnos y puestos en la pantalla principal. 
+     * @param turnos_puestos
+     * @param turnos
+     */
+   
+     private static void llenar_pantalla(VBox turnos_puestos,LinkedList<Turno>turnos){
+        
+        Label turno=new Label("TURNO");
+        PanelPrincipal.cambiar_labelprimervbox(turno);
+        Label puesto=new Label("PUESTO");
+        PanelPrincipal.cambiar_labelsegundovbox(puesto);
+        HBox s=new HBox(5);
+        
+        s.getChildren().addAll(turno,puesto);
+       
+        turnos_puestos.getChildren().add(s);
+        
+       
+        for(int i=0;i<turnos.size();i++){
+            HBox ho=new HBox(5);
+            Label label3=new Label(String.valueOf(turnos.get(i).getPuesto().getPaciente().toString2()));
+            PanelPrincipal.cambiar_labelprimervbox(label3);
+            
+            Label label2 = new Label(String.valueOf(turnos.get(i).getPuesto().getId()));
+            PanelPrincipal.cambiar_labelsegundovbox(label2);
+            ho.getChildren().addAll(label3,label2);
+            turnos_puestos.getChildren().add(ho);
+            
+        }
+        
+        
+        
+    }
+      /**
+     * Funcion que se encarga de llamar a la lista de turnos y al Vbox.Llama a la funcion llenar_pantalla 
+     * @param p puesto a agregarse a los turnos. Usar esta funcion cuando se quiera añadir un puesto
+     */
+    public static void mostrar_puestos(Puesto p){
+                VBox V=PanelPrincipal.turnos_puestos;
+                V.getChildren().clear();
+                LinkedList<Turno> turnos=PanelPrincipal.turnos;
+                turnos.add(new Turno(p));
+                
+                
+               
+                llenar_pantalla(V,turnos );
+        
+    }
+     /**
+     * Funcion que se encarga de llamar a la lista de turnos y al Vbox.Llama a la funcion llenar_pantalla 
+     * Actualiza los puestos
+     */
+    public static void mostrar_puestos2(){
+                VBox V=PanelPrincipal.turnos_puestos;
+                V.getChildren().clear();
+                LinkedList<Turno> turnos=PanelPrincipal.turnos;
+                //turnos.add(new Turno(p));
+                
+                
+               
+                llenar_pantalla(V,turnos );
+        
+    }
+    /**
+     * Funcion que se encarga de obtener el indice donde se encuentra el puesto  
+     * @param turnos
+     * @param p
+     */
+    private static  int obtener_indice(LinkedList<Turno> turnos,Puesto p){
+        for(int i=0;i<turnos.size();i++){
+            Turno t=turnos.get(i);
+            if((p.getId())==t.getPuesto().getId()){
+                return i;
+            } 
+            
+        }
+        return -1;
+    }
+    /**
+     * Funcion que se encarga de eliminar el turno y el puesto de la pantalla principal.  
+     * @param p
+     */
+    public static void eliminarpuestos_pantalla(Puesto p){
+                VBox V=PanelPrincipal.turnos_puestos;
+                V.getChildren().clear();
+                LinkedList<Turno> turnos=PanelPrincipal.turnos;
+                int indice=obtener_indice(turnos,p);
+                if(indice>=0){
+                turnos.remove(indice);
+                }
+                llenar_pantalla(V,turnos );
+        
+    }
 }
